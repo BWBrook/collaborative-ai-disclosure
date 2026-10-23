@@ -10,6 +10,7 @@ Each file contains a clearly delimited drafting passage and instructions. Replac
 | [Extended declaration](declaration-extended.md) | More room for the iterative relationship and its limits |
 | [Methods disclosure](methods-disclosure.md) | AI involvement that materially affects the research procedure |
 | [Repository AI_USE](AI_USE.md) | A readable project-level account, with optional detail |
+| [Structured record](AI_USE.yaml) | Checkable facts behind the narrative: systems, records, consequential claims and their checks; proposal D017 |
 | [Verification record](verification-record.md) | Record actual evidence for a consequential claim or artifact; discussion draft |
 | [Policy check](policy-check.md) | Document a target-journal check without claiming automatic compliance |
 | [Decision record](decision-record.md) | Preserve a consequential choice or unresolved issue |

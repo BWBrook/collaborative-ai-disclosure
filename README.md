@@ -24,7 +24,7 @@ The founding discussion established five working design commitments:
 
 Their precise wording remains editable. A sixth commitment was adopted on 2026-10-23:
 
-6. **Origin tells you which checks a contribution needs; warrant decides whether it stands.** A disclosure's epistemic weight rests on how the claims were checked, not on who did which task. See [warrant and independence](docs/warrant-and-independence.md). The operational account of checks in that document is still a proposal.
+6. **Origin tells you which checks a contribution needs; warrant decides whether it stands.** Its operational account, in [warrant and independence](docs/warrant-and-independence.md) and the [structured record](docs/structured-record.md), is a proposal under review.
 
 ## Where to start
 
@@ -33,6 +33,7 @@ Their precise wording remains editable. A sixth commitment was adopted on 2026-1
 | Continue development in WSL with Codex or Claude | [START_HERE.md](START_HERE.md) and [HANDOVER.md](HANDOVER.md) |
 | Understand the framework | [Principles](docs/principles.md) and [interaction modes](docs/interaction-modes.md) |
 | Adapt a declaration for a paper | [Template guide](templates/README.md) |
+| Record the checkable facts behind a declaration (proposal) | [Structured record](docs/structured-record.md) and [its template](templates/AI_USE.yaml) |
 | Understand the reasoning behind the design | [Founding discussion](provenance/founding-discussion.md) and [decision log](provenance/decision-log.md) |
 | Check journal-specific requirements | [Policy register and review procedure](policies/README.md) |
 | Contribute or challenge a proposal | [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](ROADMAP.md) |

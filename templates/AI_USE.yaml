@@ -1,0 +1,76 @@
+# AI-use record template. Format and field guide: docs/structured-record.md.
+# Write the narrative (AI_USE.md) first; this file carries the checkable facts behind it.
+# Every <...> is a placeholder. "not recorded" and "not assessed" are honest values; guesses are not.
+# Validate with: uv run scripts/validate_record.py AI_USE.yaml
+record_format: ai-use-record/0.1
+
+artefact:
+  title: <title>
+  kind: paper            # paper | preprint | dataset | software | repository | proposal | other
+  identifier: <DOI, URL or tag>       # optional
+  version: <version>                  # optional
+
+narrative: AI_USE.md
+
+record:
+  prepared_by: [<participant id>]     # include any AI system that drafted this record
+  prepared_on: <YYYY-MM-DD>
+  human_review:
+    status: pending      # pending | reviewed (reviewed needs reviewed_by and reviewed_on)
+
+participants:
+  people:
+    - id: <short id>
+      name: <name>
+      description: <optional>
+  systems:
+    - id: <short id>
+      product: <product or interface, e.g. the app or agent used>
+      provider: <provider>
+      model: <identifier as recorded, or "not recorded">   # never inferred from product or date
+      model_source: not-recorded   # exposed-by-tool | provider-record | contemporaneous-note | recollection | not-recorded
+      period: {from: <YYYY[-MM[-DD]] or not recorded>, to: <date, not recorded, or ongoing>}
+      interaction_record: none     # original | partial-original | contemporaneous-summary | later-reconstruction | none | not-recorded
+      configuration: <optional: reasoning effort, delegation>
+      description: <optional>
+
+relationship:
+  predominant_mode: governed-collaboration   # ai-assistance | governed-collaboration | delegated-problem-solving | agent-led-exploration | mixed
+  secondary:                                 # optional
+    - mode: <mode>
+      phase: <when or where in the work>
+  summary: <one or two sentences; the narrative carries the detail>
+
+records:                 # status: present | partial | absent | not-applicable; access: public | on-request | private | mixed | none
+  clean_release: {status: <status>, access: <access>, location: <where>}
+  development_history: {status: <status>, access: <access>, location: <where>}
+  deliberative_record: {status: <status>, access: <access>, location: <where>}
+
+claims:                  # consequential claims the AI-involved work bears on; omit for bounded assistance with none
+  - id: C1
+    statement: <the claim>
+    location: <section, figure or table>
+    produced_by: [<every participant involved, unordered>]
+    produced_through: <how the claim was produced, in a sentence>
+    failure_modes:
+      - <a consequential way the AI-involved work could make this wrong>
+    checks:
+      - id: C1.a
+        method: other   # self-review | same-provider-review | cross-provider-review | generator-written-tests | reproduction |
+                        # independent-reimplementation | human-summary-review | human-primary-review | known-answer-test |
+                        # external-evidence | other. A label sets no strength.
+        description: <what was actually done>
+        performed_by: [<participant id>]
+        target: <the failure this check is aimed at>
+        oracle: <how the expected answer was established>
+        evidence_source: <where the evidence came from>
+        shares: not assessed   # or a list from: model, context, specification, framing, data, code ([] = none identified)
+        outcome: not-run       # passed | failed | issues-fixed | inconclusive | not-run
+        observed: <optional: what was actually seen>
+        residual: <optional: what this check leaves unchecked>
+        preserved_at:
+          - note: <path:, url: or note: saying where the record of the check is kept>
+    limits: <what the checks together do not establish>
+
+gaps:
+  - <missing records, unknown identifiers, unrun checks>

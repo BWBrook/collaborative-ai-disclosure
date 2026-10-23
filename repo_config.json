@@ -31,7 +31,9 @@
     "issues",
     "scripts",
     "tests",
-    "qa"
+    "qa",
+    "AI_USE.yaml",
+    "schema"
   ],
   "required_files": [
     "README.md",

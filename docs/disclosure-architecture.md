@@ -24,6 +24,8 @@ See [Methods template](../templates/methods-disclosure.md) and the [policy adapt
 
 An `AI_USE.md` can describe the iterative relationship, participating systems and approximate periods, consequential interventions, acceptance practices, available records and gaps. Write it as readable prose. Add optional logs or structured records only when they clarify something important.
 
+A [structured record](structured-record.md) (`AI_USE.yaml`, proposal D017) can sit beside the narrative. It carries the checkable facts: systems and how their identities are known, the records that exist, and the checks behind consequential claims. It never records shares of labour.
+
 The extended narrative is not a substitute for disclosure in the submitted manuscript when the venue requires that disclosure. Nor should it silently contradict the declaration or Methods.
 
 ## Separate records for separate purposes

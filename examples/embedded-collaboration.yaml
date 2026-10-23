@@ -1,0 +1,244 @@
+# FICTIONAL. Not a record of an actual study, a completed check or a particular model's capabilities.
+# Pairs with examples/embedded-collaboration.md. Systems, people, outcomes and locations are invented.
+# It also carries the four counterexamples from Codex's review (board thread 93, message 2266):
+# E1.a, E1.b, E1.d and E4.a show that a method label sets no default strength.
+record_format: ai-use-record/0.1
+
+artefact:
+  title: Fictional occupancy study of a forest marsupial
+  kind: paper
+
+narrative: embedded-collaboration.md
+
+record:
+  prepared_by: [r1, agent_a2]
+  prepared_on: 2026-10-23
+  human_review:
+    status: reviewed
+    reviewed_by: [r1, r2]
+    reviewed_on: 2026-10-23
+    note: Fictional review, included to show the field.
+
+participants:
+  people:
+    - id: r1
+      name: Researcher One (fictional)
+      description: Posed the question; designed the field sampling.
+    - id: r2
+      name: Researcher Two (fictional)
+  systems:
+    - id: agent_a
+      product: Coding agent (fictional)
+      provider: Provider A
+      model: not recorded
+      model_source: not-recorded
+      period: {from: 2025-11, to: 2026-01}
+      interaction_record: partial-original
+      description: Early sessions not retained.
+    - id: agent_a2
+      product: Coding agent (fictional)
+      provider: Provider A
+      model: example-model-2 (fictional identifier)
+      model_source: exposed-by-tool
+      period: {from: 2026-02, to: 2026-06}
+      interaction_record: original
+      configuration: High reasoning effort; delegated bounded extraction tasks to a smaller model from the same provider.
+    - id: assistant_b
+      product: Chat assistant (fictional)
+      provider: Provider B
+      model: not recorded
+      model_source: not-recorded
+      period: {from: 2026-01, to: 2026-06}
+      interaction_record: contemporaneous-summary
+    - id: classifier_c
+      product: Image classifier (fictional)
+      provider: Provider C
+      model: example-classifier-1 (fictional identifier)
+      model_source: provider-record
+      period: {from: 2025-10, to: 2025-10}
+      interaction_record: original
+      description: Used as a measurement instrument to label camera-trap images.
+
+relationship:
+  predominant_mode: governed-collaboration
+  secondary:
+    - mode: delegated-problem-solving
+      phase: Defined simulation comparisons in 2026-03.
+  summary: >-
+    The researchers revisited framing and consequential methodological choices throughout;
+    agents implemented, criticised and drafted.
+
+records:
+  clean_release:
+    status: present
+    access: public
+    location: Fictional archive of shareable inputs, code and output mapping
+  development_history:
+    status: present
+    access: public
+    location: Fictional project repository
+  deliberative_record:
+    status: partial
+    access: on-request
+    note: Early agent conversations were not retained.
+
+claims:
+  - id: E1
+    statement: Detection-corrected occupancy of the focal species declined between the two survey periods.
+    location: Results, Figure 2
+    produced_by: [r1, agent_a, agent_a2]
+    produced_through: R1 specified the model structure; the coding agents implemented and fitted it, iterating with R1.
+    failure_modes:
+      - Implementation error in the likelihood.
+      - Closure assumption violated within survey seasons.
+      - Indexing error between sites and visits.
+    checks:
+      - id: E1.a
+        method: known-answer-test
+        description: Occupancy and detection parameters planted in simulated data were recovered across 200 replicates.
+        performed_by: [agent_a2]
+        target: Implementation and fitting errors.
+        oracle: Parameters planted in the simulation.
+        evidence_source: Simulated data.
+        shares: [specification, code]
+        outcome: passed
+        residual: >-
+          The simulator calls the same likelihood function as the fitting code, so an error in
+          that function could cancel out. A wrong model specification is also undetectable here.
+        preserved_at:
+          - note: Simulation script and summary in the fictional repository.
+      - id: E1.b
+        method: human-primary-review
+        description: R1 assessed the closure assumption against the field protocol and site histories.
+        performed_by: [r1]
+        target: Violations visible from field knowledge that no test encodes.
+        oracle: R1's knowledge of the sites.
+        evidence_source: Field protocol and site histories.
+        shares: [specification]
+        outcome: issues-fixed
+        observed: Closure relaxed for two sites.
+        residual: R1 designed the sampling, so assumptions built into that design are shared with the model.
+        preserved_at:
+          - note: Decision record in the fictional repository.
+      - id: E1.c
+        method: reproduction
+        description: R2 reran the archived analysis from the data release in a clean environment.
+        performed_by: [r2]
+        target: Missing inputs, environment dependence and non-determinism.
+        oracle: The original run's outputs.
+        evidence_source: Archived data and code.
+        shares: [specification, code, data]
+        outcome: passed
+        residual: Blind to errors in the pipeline itself.
+        preserved_at:
+          - note: Fictional rerun log.
+      - id: E1.d
+        method: generator-written-tests
+        description: An invariant written by the coding agent asserts that every detection history maps to exactly one site-visit.
+        performed_by: [agent_a2]
+        target: Indexing error between sites and visits.
+        oracle: The invariant.
+        evidence_source: The fitted model's inputs.
+        shares: [model, specification, code]
+        outcome: issues-fixed
+        observed: The invariant failed on the first run and exposed an off-by-one join, which was fixed.
+        preserved_at:
+          - note: Fictional commit and test log.
+    limits: The checks support implementation consistency, not a causal attribution of the decline.
+
+  - id: E2
+    statement: The central literature claims in the Introduction are supported by the cited sources.
+    location: Introduction
+    produced_by: [r1, assistant_b]
+    produced_through: Drafted jointly through repeated revision; the assistant proposed several sources.
+    failure_modes:
+      - Fabricated or misattributed citations.
+      - Real sources that do not support the claim.
+    checks:
+      - id: E2.a
+        method: external-evidence
+        description: R2 matched each central claim to the cited passage in the source.
+        performed_by: [r2]
+        target: Unsupported or misattributed citations.
+        oracle: The cited passages.
+        evidence_source: The cited sources.
+        shares: []
+        outcome: issues-fixed
+        observed: Two citations replaced.
+        preserved_at:
+          - note: Fictional checklist.
+    limits: Covers central claims only, not every citation.
+
+  - id: E3
+    statement: The data cannot distinguish between the two competing mechanisms for the decline.
+    location: Discussion
+    produced_by: [r1, r2, agent_a2, assistant_b]
+    produced_through: Developed in discussion between the researchers and both systems.
+    failure_modes:
+      - Overreach or under-reach relative to the evidence.
+      - A mechanism the team did not consider.
+    checks:
+      - id: E3.a
+        method: same-provider-review
+        description: Assistant B criticised the argument it had also helped to produce.
+        performed_by: [assistant_b]
+        target: Gaps in the argument as framed.
+        oracle: The assistant's judgement.
+        evidence_source: The draft Discussion.
+        shares: [model, framing]
+        outcome: issues-fixed
+        residual: Not an independent check; it inherits the framing it helped create.
+        preserved_at:
+          - note: Fictional summary of the critique.
+      - id: E3.b
+        method: external-evidence
+        description: R2 compared the competing mechanisms against independent regional survey data.
+        performed_by: [r2]
+        target: Inconsistency with independent evidence.
+        oracle: Regional survey trends.
+        evidence_source: An independent regional monitoring dataset.
+        shares: [framing]
+        outcome: passed
+        residual: The regional data share the team's framing of which mechanisms are candidates.
+        preserved_at:
+          - note: Fictional comparison table.
+    limits: No independent data were available to discriminate between the mechanisms.
+
+  - id: E4
+    statement: The image classifier labels the focal species with at least 95% precision in these camera-trap images.
+    location: Methods, Image classification
+    produced_by: [r2, classifier_c]
+    produced_through: R2 ran the classifier over all images and accepted labels above a confidence threshold.
+    failure_modes:
+      - Misclassification of a similar co-occurring species.
+      - Precision lower at these sites than on the benchmark.
+    checks:
+      - id: E4.a
+        method: external-evidence
+        description: Precision was measured on a published labelled benchmark from the same region.
+        performed_by: [r2]
+        target: Misclassification of the focal species.
+        oracle: The benchmark's published labels.
+        evidence_source: A public regional benchmark.
+        shares: [data]
+        outcome: passed
+        observed: Precision 0.97 on the benchmark.
+        residual: The benchmark is public and may have been in the classifier's training data, which would inflate the measured precision.
+        preserved_at:
+          - note: Fictional evaluation notebook.
+      - id: E4.b
+        method: human-primary-review
+        description: R1 labelled a random sample of 500 study images blind to the classifier's labels.
+        performed_by: [r1]
+        target: Precision at the study sites.
+        oracle: R1's labels.
+        evidence_source: Study images.
+        shares: []
+        outcome: passed
+        observed: Precision 0.96 on the sample.
+        preserved_at:
+          - note: Fictional labelling sheet.
+    limits: Precision outside the sampled sites and seasons is not established.
+
+gaps:
+  - Early model identifiers and some conversations were not retained.

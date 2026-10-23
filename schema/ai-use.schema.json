@@ -1,0 +1,527 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ai-use-record/0.1",
+  "title": "AI-use record",
+  "description": "Facts and evidence links that accompany a narrative account of AI participation in research. Records no labour shares, percentages or task grids. See docs/structured-record.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_format",
+    "artefact",
+    "narrative",
+    "record",
+    "participants",
+    "relationship",
+    "records"
+  ],
+  "properties": {
+    "record_format": {
+      "const": "ai-use-record/0.1"
+    },
+    "artefact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "kind"
+      ],
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "kind": {
+          "enum": [
+            "paper",
+            "preprint",
+            "dataset",
+            "software",
+            "repository",
+            "proposal",
+            "other"
+          ]
+        },
+        "identifier": {
+          "$ref": "#/$defs/text"
+        },
+        "version": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "narrative": {
+      "description": "Path or URL of the narrative account this record accompanies. The narrative is primary.",
+      "$ref": "#/$defs/text"
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prepared_by",
+        "prepared_on",
+        "human_review"
+      ],
+      "properties": {
+        "prepared_by": {
+          "$ref": "#/$defs/ids"
+        },
+        "prepared_on": {
+          "$ref": "#/$defs/date"
+        },
+        "human_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pending",
+                "reviewed"
+              ]
+            },
+            "reviewed_by": {
+              "$ref": "#/$defs/ids"
+            },
+            "reviewed_on": {
+              "$ref": "#/$defs/date"
+            },
+            "note": {
+              "$ref": "#/$defs/text"
+            }
+          },
+          "if": {
+            "properties": {
+              "status": {
+                "const": "reviewed"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "reviewed_by",
+              "reviewed_on"
+            ]
+          }
+        }
+      }
+    },
+    "participants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "systems"
+      ],
+      "properties": {
+        "people": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "name": {
+                "$ref": "#/$defs/text"
+              },
+              "description": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        "systems": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "product",
+              "provider",
+              "model",
+              "model_source",
+              "period",
+              "interaction_record"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "product": {
+                "$ref": "#/$defs/text"
+              },
+              "provider": {
+                "$ref": "#/$defs/text"
+              },
+              "model": {
+                "description": "Model identifier as recorded, or 'not recorded'. Never inferred from a product name or date.",
+                "$ref": "#/$defs/text"
+              },
+              "model_source": {
+                "enum": [
+                  "exposed-by-tool",
+                  "provider-record",
+                  "contemporaneous-note",
+                  "recollection",
+                  "not-recorded"
+                ]
+              },
+              "period": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "from",
+                  "to"
+                ],
+                "properties": {
+                  "from": {
+                    "$ref": "#/$defs/date_or_unknown"
+                  },
+                  "to": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/date_or_unknown"
+                      },
+                      {
+                        "const": "ongoing"
+                      }
+                    ]
+                  }
+                }
+              },
+              "interaction_record": {
+                "enum": [
+                  "original",
+                  "partial-original",
+                  "contemporaneous-summary",
+                  "later-reconstruction",
+                  "none",
+                  "not-recorded"
+                ]
+              },
+              "description": {
+                "$ref": "#/$defs/text"
+              },
+              "configuration": {
+                "description": "Settings that shaped the system's work, such as reasoning effort or which system delegated to it.",
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "predominant_mode",
+        "summary"
+      ],
+      "properties": {
+        "predominant_mode": {
+          "$ref": "#/$defs/mode"
+        },
+        "secondary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mode",
+              "phase"
+            ],
+            "properties": {
+              "mode": {
+                "$ref": "#/$defs/mode"
+              },
+              "phase": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "records": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clean_release",
+        "development_history",
+        "deliberative_record"
+      ],
+      "properties": {
+        "clean_release": {
+          "$ref": "#/$defs/held_record"
+        },
+        "development_history": {
+          "$ref": "#/$defs/held_record"
+        },
+        "deliberative_record": {
+          "$ref": "#/$defs/held_record"
+        }
+      }
+    },
+    "claims": {
+      "description": "The consequential claims the conclusions depend on, typically 3-10. Not every output.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "statement",
+          "produced_by",
+          "produced_through",
+          "failure_modes",
+          "checks",
+          "limits"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "statement": {
+            "$ref": "#/$defs/text"
+          },
+          "location": {
+            "$ref": "#/$defs/text"
+          },
+          "produced_by": {
+            "description": "Every participant involved in producing the claim, unordered and without shares.",
+            "$ref": "#/$defs/ids"
+          },
+          "produced_through": {
+            "$ref": "#/$defs/text"
+          },
+          "failure_modes": {
+            "description": "Consequential ways the AI-involved work behind this claim could be wrong.",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/text"
+            }
+          },
+          "checks": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "method",
+                "description",
+                "performed_by",
+                "target",
+                "oracle",
+                "evidence_source",
+                "shares",
+                "outcome",
+                "preserved_at"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/id"
+                },
+                "method": {
+                  "description": "Descriptive label only. It establishes neither independence nor the ability to detect an error.",
+                  "enum": [
+                    "self-review",
+                    "same-provider-review",
+                    "cross-provider-review",
+                    "generator-written-tests",
+                    "reproduction",
+                    "independent-reimplementation",
+                    "human-summary-review",
+                    "human-primary-review",
+                    "known-answer-test",
+                    "external-evidence",
+                    "other"
+                  ]
+                },
+                "description": {
+                  "$ref": "#/$defs/text"
+                },
+                "performed_by": {
+                  "$ref": "#/$defs/ids"
+                },
+                "target": {
+                  "description": "The failure the check is aimed at.",
+                  "$ref": "#/$defs/text"
+                },
+                "oracle": {
+                  "description": "How the expected answer was established.",
+                  "$ref": "#/$defs/text"
+                },
+                "evidence_source": {
+                  "description": "Where the evidence came from.",
+                  "$ref": "#/$defs/text"
+                },
+                "shares": {
+                  "description": "Possible common causes of error shared with the process that produced the claim. An empty list means none identified; 'not assessed' means nobody looked.",
+                  "anyOf": [
+                    {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "enum": [
+                          "model",
+                          "context",
+                          "specification",
+                          "framing",
+                          "data",
+                          "code"
+                        ]
+                      }
+                    },
+                    {
+                      "const": "not assessed"
+                    }
+                  ]
+                },
+                "outcome": {
+                  "enum": [
+                    "passed",
+                    "failed",
+                    "issues-fixed",
+                    "inconclusive",
+                    "not-run"
+                  ]
+                },
+                "observed": {
+                  "description": "What was actually observed.",
+                  "$ref": "#/$defs/text"
+                },
+                "residual": {
+                  "description": "What this check leaves unchecked.",
+                  "$ref": "#/$defs/text"
+                },
+                "preserved_at": {
+                  "description": "Where the record of this check is kept.",
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "maxProperties": 1,
+                    "properties": {
+                      "path": {
+                        "$ref": "#/$defs/text"
+                      },
+                      "url": {
+                        "type": "string",
+                        "pattern": "^https://"
+                      },
+                      "note": {
+                        "$ref": "#/$defs/text"
+                      }
+                    }
+                  }
+                },
+                "date": {
+                  "$ref": "#/$defs/date"
+                }
+              }
+            }
+          },
+          "limits": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "description": "A consequential claim that the AI-involved work bears on. Not every output, and not every conclusion of a study when AI involvement was bounded."
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/text"
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+    },
+    "ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$"
+    },
+    "date_or_unknown": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/date"
+        },
+        {
+          "const": "not recorded"
+        }
+      ]
+    },
+    "mode": {
+      "enum": [
+        "ai-assistance",
+        "governed-collaboration",
+        "delegated-problem-solving",
+        "agent-led-exploration",
+        "mixed"
+      ]
+    },
+    "held_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "present",
+            "partial",
+            "absent",
+            "not-applicable"
+          ]
+        },
+        "access": {
+          "enum": [
+            "public",
+            "on-request",
+            "private",
+            "mixed",
+            "none"
+          ]
+        },
+        "location": {
+          "$ref": "#/$defs/text"
+        },
+        "note": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    }
+  }
+}

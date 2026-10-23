@@ -1,0 +1,276 @@
+# Structured AI-use record for this repository. Format: docs/structured-record.md.
+# The narrative account in AI_USE.md is primary; this file carries the checkable facts.
+record_format: ai-use-record/0.1
+
+artefact:
+  title: Collaborative AI Research Disclosure
+  kind: repository
+  version: 0.1.0-draft (unreleased)
+
+narrative: AI_USE.md
+
+record:
+  prepared_by: [claude]
+  prepared_on: 2026-10-23
+  human_review:
+    status: pending
+    note: Drafted by Claude. Neither Barry nor Codex has reviewed this record.
+
+participants:
+  people:
+    - id: bwb
+      name: Barry W. Brook
+      description: Founder. Set the direction in the founding discussion and adopted P06.
+  systems:
+    - id: chatgpt
+      product: ChatGPT
+      provider: OpenAI
+      model: not recorded
+      model_source: not-recorded
+      period: {from: not recorded, to: 2026-09-08}
+      interaction_record: contemporaneous-summary
+      description: >-
+        Founding discussion with Barry; built the 0.1.0-draft scaffold on 2026-09-08,
+        including its source checks, maintenance code and tests.
+    - id: claude
+      product: Claude Code (desktop app, WSL)
+      provider: Anthropic
+      model: claude-opus-5-5
+      model_source: exposed-by-tool
+      period: {from: 2026-10-23, to: ongoing}
+      interaction_record: original
+      description: >-
+        Imported the scaffold under Git, reviewed it, proposed P06, drafted the warrant and
+        structured-record documents, and prepared this record.
+    - id: codex
+      product: Codex
+      provider: OpenAI
+      model: GPT-6 (self-reported in correspondence-board posts)
+      model_source: contemporaneous-note
+      period: {from: 2026-10-23, to: ongoing}
+      interaction_record: partial-original
+      configuration: Uses bounded subagents for source reading and maintenance (board thread 92).
+      description: >-
+        Reviewed the warrant draft, reads prior art and prunes the scaffold. Entry written by
+        Claude from board posts; Codex should correct it.
+
+relationship:
+  predominant_mode: governed-collaboration
+  secondary:
+    - mode: delegated-problem-solving
+      phase: Construction of the scaffold files from the founding discussion (2026-09-08).
+  summary: >-
+    Barry sets direction and adopts or rejects principles; AI systems propose formulations,
+    draft documents and tooling, and review each other's work on a shared board.
+
+records:
+  clean_release:
+    status: absent
+    note: No release yet; see issues/005-first-public-release.md.
+  development_history:
+    status: present
+    access: private
+    location: Git history from commit e721a3d (local; no remote yet)
+  deliberative_record:
+    status: partial
+    access: mixed
+    location: >-
+      provenance/ (public in this repository); Claude Code session transcripts and
+      correspondence-board threads 92-94 (private)
+    note: The raw founding ChatGPT conversation is not included; provenance/founding-discussion.md is the assistant's summary of it.
+
+claims:
+  - id: C1
+    statement: The founding synthesis accurately represents the positions Barry took in the founding discussion.
+    location: provenance/founding-discussion.md; decision log D001-D009
+    produced_by: [bwb, chatgpt]
+    produced_through: Barry's answers in a ChatGPT conversation, summarised by ChatGPT when it built the scaffold.
+    failure_modes:
+      - The assistant's own proposals recorded as Barry's positions.
+      - Barry's qualifications dropped or softened in summary.
+    checks:
+      - id: C1.a
+        method: cross-provider-review
+        description: Claude read the synthesis against the scaffold's principles, modes and decision log.
+        performed_by: [claude]
+        target: Inconsistency between the synthesis and the rest of the scaffold.
+        oracle: The scaffold's other documents.
+        evidence_source: The scaffold itself; Claude has not seen the original conversation.
+        shares: [framing, data]
+        outcome: passed
+        residual: Cannot detect misrepresentation of the original conversation.
+        preserved_at:
+          - path: provenance/reviews/2026-10-23-claude-first-pass.md
+        date: 2026-10-23
+      - id: C1.b
+        method: human-primary-review
+        description: Barry reads the synthesis and the decision log against his recollection of the founding discussion.
+        performed_by: [bwb]
+        target: Misrepresentation of his positions.
+        oracle: Barry's recollection and any retained conversation.
+        evidence_source: The founding conversation as Barry remembers or retains it.
+        shares: not assessed
+        outcome: not-run
+        preserved_at:
+          - note: Pending; requested in HANDOVER.md before first public release.
+    limits: Until C1.b is done, the framework's account of its founder's positions rests on the summarising system's own record.
+
+  - id: C2
+    statement: Barry adopted P06 on 2026-10-23 in the words recorded in decision D010.
+    location: provenance/decision-log.md, D010 adoption record
+    produced_by: [bwb, claude]
+    produced_through: >-
+      Claude drafted the proposition and offered the adoption wording as a reply option;
+      Barry selected it.
+    failure_modes:
+      - Misquotation or a wrong date.
+      - The scope of the adoption overstated.
+    checks:
+      - id: C2.a
+        method: external-evidence
+        description: The quoted sentence was matched exactly against the user message in the session transcript.
+        performed_by: [claude]
+        target: Misquotation and a wrong date.
+        oracle: The harness-written transcript, timestamped 2026-10-23T04:22:25Z.
+        evidence_source: Claude Code session transcript 0882c574-d3aa-417a-8a5a-c151dff00a2c (private, on wsl-laptop).
+        shares: []
+        outcome: passed
+        residual: Cannot detect whether the framing of the offered options steered the decision.
+        preserved_at:
+          - note: Session transcript on wsl-laptop (private).
+        date: 2026-10-23
+      - id: C2.b
+        method: human-primary-review
+        description: Barry confirms the D010 record, including its account of how his reply was produced.
+        performed_by: [bwb]
+        target: Overstated scope; any misdescription of his intent.
+        oracle: Barry's own intent.
+        evidence_source: Barry.
+        shares: []
+        outcome: not-run
+        preserved_at:
+          - note: Pending.
+    limits: The wording and the framing of the choice came from the system that proposed the principle.
+
+  - id: C3
+    statement: Commit e721a3d is byte-identical to the scaffold archive ChatGPT built on 2026-09-08.
+    location: Git history; AI_USE.md
+    produced_by: [claude]
+    produced_through: The archive was already extracted when Claude started; Claude initialised Git over the directory and committed every file.
+    failure_modes:
+      - Files altered, dropped or re-encoded during import.
+    checks:
+      - id: C3.a
+        method: known-answer-test
+        description: sha256sum -c against the MANIFEST.sha256 delivered with the archive, before the commit.
+        performed_by: [claude]
+        target: Any byte change to a listed file.
+        oracle: Hashes computed when the archive was built.
+        evidence_source: MANIFEST.sha256 delivered with the archive.
+        shares: []
+        outcome: passed
+        observed: All 68 entries matched.
+        residual: Cannot detect changes made before the archive was delivered.
+        preserved_at:
+          - note: MANIFEST.sha256 (gitignored) in the working directory; commit message of e721a3d.
+        date: 2026-10-23
+    limits: Shows the import matches the archive as delivered, not that the archive matches what ChatGPT intended to produce.
+
+  - id: C4
+    statement: >-
+      Kim et al. (2025) measured substantial error correlation among more than 350 language
+      models, including across providers for larger, more accurate models.
+    location: docs/warrant-and-independence.md, section 3
+    produced_by: [claude]
+    produced_through: Claude found the paper by web search and summarised it from its abstract.
+    failure_modes:
+      - The finding misreported or overstated.
+      - The result transferred beyond the tasks the paper measured.
+    checks:
+      - id: C4.a
+        method: external-evidence
+        description: >-
+          The raw abstract from arxiv.org was fetched and the quoted phrases matched exactly. An
+          earlier reading had come through a fetch tool that returns a model-written summary.
+        performed_by: [claude]
+        target: Misquotation of the abstract.
+        oracle: The abstract text.
+        evidence_source: https://arxiv.org/abs/2506.07962 (abstract only).
+        shares: []
+        outcome: passed
+        preserved_at:
+          - url: https://arxiv.org/abs/2506.07962
+        date: 2026-10-23
+      - id: C4.b
+        method: external-evidence
+        description: Codex read sections 1, 3-4 and 5.2 of arXiv v1 against the draft's use of the paper.
+        performed_by: [codex]
+        target: Transfer of the finding beyond what the paper measured.
+        oracle: The paper's methods and stated limitations.
+        evidence_source: https://arxiv.org/html/2506.07962v1 (selected sections).
+        shares: []
+        outcome: issues-fixed
+        observed: >-
+          The draft treated 60% conditional agreement on multiple-choice items as calibrating
+          long-form review between two systems, and implied a temporal decline. Both were removed.
+        preserved_at:
+          - note: Correspondence board thread 93, message 2271 (private).
+        date: 2026-10-23
+    limits: Neither participant has read the whole paper.
+
+  - id: C5
+    statement: >-
+      Knight and Leveson (1986) observed coincident failures among separately developed
+      versions, and attributed the common faults to misunderstandings of numerical analysis
+      and incomplete case analysis, not to the specification.
+    location: docs/warrant-and-independence.md, section 3
+    produced_by: [claude]
+    produced_through: >-
+      Claude first wrote, from Crossref metadata and search summaries, that a shared
+      specification caused the coincident failures. The corrected wording follows Codex's report.
+    failure_modes:
+      - A mechanism attributed to the authors that they did not report.
+    checks:
+      - id: C5.a
+        method: external-evidence
+        description: Codex read sections 6 and 8 of the full manuscript against the draft.
+        performed_by: [codex]
+        target: Misattributed mechanism.
+        oracle: The authors' own analysis of the common faults.
+        evidence_source: Full-text manuscript hosted at Rutgers (printed pages 16-17 and 20-21).
+        shares: []
+        outcome: issues-fixed
+        observed: The authors state the common faults involved no ambiguity, inconsistency or deficiency in the specification.
+        preserved_at:
+          - url: https://people.cs.rutgers.edu/~uli/cs673/papers/EvaluationMultiVersionProgramming86.pdf
+          - note: Correspondence board thread 93, message 2265 (private).
+        date: 2026-10-23
+    limits: Claude's corrected wording relies on Codex's report; neither has read the whole paper.
+
+  - id: C6
+    statement: The repository's mechanical checks pass (scripts/check_repo.py and the unit tests).
+    location: AI_USE.md
+    produced_by: [chatgpt]
+    produced_through: ChatGPT wrote the maintenance code and its tests in the same build.
+    failure_modes:
+      - The checks miss defects because the tests share the code's assumptions.
+    checks:
+      - id: C6.a
+        method: generator-written-tests
+        description: Claude ran check_repo.py and the 46 unit tests ChatGPT wrote for its own tooling.
+        performed_by: [claude]
+        target: Regressions in link, JSON and packaging mechanics that the tests anticipate.
+        oracle: Expectations written by the code's author.
+        evidence_source: The repository's tests.
+        shares: [specification, code]
+        outcome: passed
+        residual: No independent review of the maintenance tooling has been done.
+        preserved_at:
+          - note: Test run on 2026-10-23 against commit 5955420; Codex is now revising the tooling and tests.
+        date: 2026-10-23
+    limits: Applies to the scaffold tooling as of 2026-10-23.
+
+gaps:
+  - The ChatGPT model identifier was not recorded.
+  - The raw founding conversation is not in the repository.
+  - No human has reviewed the source register, the decision log's recent entries or this record.

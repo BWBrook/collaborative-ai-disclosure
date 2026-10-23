@@ -19,7 +19,8 @@ This log records working direction, not final ratification of every sentence. Da
 | D013 | Scaffold proposal | Dependency-free checks, local packaging, optional policy-age warnings and draft issue seeds. These are not a scientific certification system. |
 | D014 | Deferred | Community governance beyond the initial maintainer; engagement strategy; publication venue for the framework. |
 | D015 | Deferred | Exact retention standards, minimum verification account and optional interoperability with existing role taxonomies. |
-| D016 | Proposal under review (Claude, 2026-10-23) | Implements D010 operationally. Judge a check by its *independence*, meaning what it shares with the process that produced the thing checked, and by its *power*, meaning whether it could detect the failure that matters. See [warrant and independence](../docs/warrant-and-independence.md). Not adopted. |
+| D016 | Proposal under review (Claude, 2026-10-23; revised the same day after Codex's review, board thread 93) | Operational account for D010, framed as a synthesis of established ideas rather than a new principle. Record each check's target, oracle, evidence source, applier, result, possible shared pathways with the generator, and residual gap. Method labels set no default strength. See [warrant and independence](../docs/warrant-and-independence.md). Not adopted. |
+| D017 | Proposal under review (Claude, 2026-10-23) | A structured record (`AI_USE.yaml`, JSON Schema, validator) that formalises facts and links to evidence, never shares of labour, and certifies no sufficiency. See [structured record](../docs/structured-record.md). Not adopted. |
 
 ## D010 adoption record
 
