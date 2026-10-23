@@ -282,7 +282,6 @@
         "required": [
           "id",
           "statement",
-          "produced_by",
           "produced_through",
           "failure_modes",
           "checks",
@@ -299,11 +298,12 @@
             "$ref": "#/$defs/text"
           },
           "produced_by": {
-            "description": "Every participant involved in producing the claim, unordered and without shares.",
+            "description": "Optional: participants involved in producing the claim, as far as known. Unordered, without shares, and not used to infer how any check relates to the work.",
             "$ref": "#/$defs/ids"
           },
           "produced_through": {
-            "$ref": "#/$defs/text"
+            "$ref": "#/$defs/text",
+            "description": "How the claim was produced, in a sentence; say so where the history is not recoverable."
           },
           "failure_modes": {
             "description": "Consequential ways the AI-involved work behind this claim could be wrong.",
@@ -315,7 +315,6 @@
           },
           "checks": {
             "type": "array",
-            "minItems": 1,
             "items": {
               "type": "object",
               "additionalProperties": false,
@@ -355,7 +354,8 @@
                   "$ref": "#/$defs/text"
                 },
                 "performed_by": {
-                  "$ref": "#/$defs/ids"
+                  "$ref": "#/$defs/ids",
+                  "description": "Who or what performed the check; for a not-run check, the intended performer."
                 },
                 "target": {
                   "description": "The failure the check is aimed at.",
@@ -401,11 +401,11 @@
                   ]
                 },
                 "observed": {
-                  "description": "What was actually observed.",
+                  "description": "What was actually observed. Required unless outcome is not-run; 'not recorded' is allowed where true.",
                   "$ref": "#/$defs/text"
                 },
                 "residual": {
-                  "description": "What this check leaves unchecked.",
+                  "description": "What this check leaves unchecked. Required unless outcome is not-run; 'not assessed' is allowed where true.",
                   "$ref": "#/$defs/text"
                 },
                 "preserved_at": {
@@ -434,8 +434,22 @@
                 "date": {
                   "$ref": "#/$defs/date"
                 }
+              },
+              "if": {
+                "properties": {
+                  "outcome": {
+                    "const": "not-run"
+                  }
+                }
+              },
+              "else": {
+                "required": [
+                  "observed",
+                  "residual"
+                ]
               }
-            }
+            },
+            "description": "Checks reported for this claim. An empty list means none are reported; explain the gap in limits. Empty checks convey no sufficiency."
           },
           "limits": {
             "$ref": "#/$defs/text"

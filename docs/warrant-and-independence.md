@@ -47,7 +47,7 @@ Dependence limits what a passing result may be counted as. It does not nullify t
 
 "Ability to detect the specified error" is the right everyday phrase. Statistical power or sensitivity should be claimed only where there is an explicit error model and an evaluation behind it. No disclosure should invent a power value for an informal review. The underlying idea, that a test supports a claim to the extent it would probably have detected the error if the error were present, is Mayo's severity requirement ([Mayo 2018](https://assets.cambridge.org/97811076/64647/excerpt/9781107664647_excerpt.pdf)).
 
-### Evidence that dependence cannot be assumed
+### Evidence that independence cannot be assumed
 
 [Knight and Leveson (1986)](https://doi.org/10.1109/TSE.1986.6312924) tested whether separately developed versions of one program fail independently. They used 27 versions and a million test cases, and coincident failures substantially exceeded what independence predicts. The authors attributed the common faults to misunderstandings of numerical analysis and incomplete case analysis. They found that the faults did *not* arise from ambiguity, inconsistency or deficiency in the specification. Their result is that separate development does not guarantee independent failure, even with a carefully debugged specification.
 

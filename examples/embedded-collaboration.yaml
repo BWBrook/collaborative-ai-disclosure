@@ -102,6 +102,7 @@ claims:
         evidence_source: Simulated data.
         shares: [specification, code]
         outcome: passed
+        observed: Planted parameters were recovered within simulation error in all three scenarios.
         residual: >-
           The simulator calls the same likelihood function as the fitting code, so an error in
           that function could cancel out. A wrong model specification is also undetectable here.
@@ -129,6 +130,7 @@ claims:
         evidence_source: Archived data and code.
         shares: [specification, code, data]
         outcome: passed
+        observed: Rerun outputs matched the archived results.
         residual: Blind to errors in the pipeline itself.
         preserved_at:
           - note: Fictional rerun log.
@@ -142,6 +144,7 @@ claims:
         shares: [model, specification, code]
         outcome: issues-fixed
         observed: The invariant failed on the first run and exposed an off-by-one join, which was fixed.
+        residual: Covers the site-visit mapping only.
         preserved_at:
           - note: Fictional commit and test log.
     limits: The checks support implementation consistency, not a causal attribution of the decline.
@@ -165,6 +168,7 @@ claims:
         shares: []
         outcome: issues-fixed
         observed: Two citations replaced.
+        residual: Peripheral citations were not checked.
         preserved_at:
           - note: Fictional checklist.
     limits: Covers central claims only, not every citation.
@@ -187,6 +191,7 @@ claims:
         evidence_source: The draft Discussion.
         shares: [model, framing]
         outcome: issues-fixed
+        observed: Two gaps in the argument were identified and addressed.
         residual: Not an independent check; it inherits the framing it helped create.
         preserved_at:
           - note: Fictional summary of the critique.
@@ -199,6 +204,7 @@ claims:
         evidence_source: An independent regional monitoring dataset.
         shares: [framing]
         outcome: passed
+        observed: Regional trends were consistent with both mechanisms.
         residual: The regional data share the team's framing of which mechanisms are candidates.
         preserved_at:
           - note: Fictional comparison table.
@@ -236,6 +242,7 @@ claims:
         shares: []
         outcome: passed
         observed: Precision 0.96 on the sample.
+        residual: One season's images only.
         preserved_at:
           - note: Fictional labelling sheet.
     limits: Precision outside the sampled sites and seasons is not established.

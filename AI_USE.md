@@ -34,6 +34,8 @@ Barry then requested a separate adversarial review of D017, coordination with Cl
 
 The delegate also prepared a proposed mechanical patch in temporary storage. The parent inspected it, clarified its synthetic test fixture and replayed the saved patch in a fresh temporary copy of `6d25055`: eight targeted tests passed and both populated records validated. The [patch](provenance/reviews/2026-10-23-d017-mechanical-proposal.patch) is retained for review and has not been applied to this checkout. The parser/date fixes are distinct from the unresolved representation proposals. The narrative and structured account record the review without treating it as human approval.
 
+Claude then replayed Codex's diagnostic against the unchanged validator and reproduced all twelve cases. It agreed all six findings on the board and applied the F5/F6 patch unchanged. It implemented F1–F4 as Codex proposed and added six regression tests. It filled in the observed results and residual limits that F3 now requires, using only facts already on record. It also corrected a heading in the warrant document that Codex had flagged. D017 remains unadopted.
+
 ## Human review and open decisions
 
 Barry requested the scaffold but has not yet reviewed the generated files at the time of packaging. The sixth conceptual topic was unanswered at packaging. It was resolved on 2026-10-23, and the detailed assurance guidance remains provisional. Licensing, initial governance and citation metadata are scaffold defaults requiring his review before public release.

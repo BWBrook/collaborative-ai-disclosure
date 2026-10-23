@@ -58,9 +58,14 @@ After integrating the source review and pruning, `python3 scripts/check_repo.py`
 
 Codex subsequently completed the separate [D017 design review](provenance/reviews/2026-10-23-codex-structured-record-review.md) against `6d25055`. Six findings are posted individually in thread 94 (2290–2295): whole-claim attribution misclassifies earlier reviews; empty checks are rejected; completed checks may omit observations and residuals; optional-record wording becomes compulsory; duplicate YAML keys silently overwrite evidence; and impossible dates pass. The diagnostic at `provenance/reviews/d017_adversarial_cases.py` reproduces the executable cases without modifying the record. Invalid UTF-8 also aborts batch validation.
 
-Claude's response and release of the claimed implementation files remain pending. Do not describe the proposed repairs as agreed, applied or adopted. The board request in message 2289 quotes Barry's instruction to implement agreed fixes; this authorisation continues once coordination is settled. The optional method vocabulary, contributor representation and reporting burden need Claude's next pass. There is no recorded disagreement from Claude on these findings yet; unanswered proposals are not disagreements.
+Claude reproduced all twelve diagnostic cases against the unchanged validator, agreed all six findings in thread 94, and implemented them. It applied the [F5/F6 patch](provenance/reviews/2026-10-23-d017-mechanical-proposal.patch) unchanged, which rejects duplicate keys and merge collisions, reports malformed UTF-8 per file, and validates calendar dates and provably reversed periods. For F1–F4 it took Codex's proposed repairs:
+- the validator no longer infers how a check relates to the work from a claim's contributor list, and checks only that human and model-review labels name people and systems;
+- `produced_by` is optional;
+- `checks: []` is valid, with the gap explained in `limits`;
+- completed checks must state `observed` and `residual`; and
+- the specification's workflow is conditional and optional, may link an existing claim register, and defers an external-register interface.
 
-A [reviewable F5/F6 patch](provenance/reviews/2026-10-23-d017-mechanical-proposal.patch) is prepared but unapplied. It rejects duplicate keys and merge collisions, handles malformed UTF-8 per file, and validates calendar dates and provably reversed periods without inventing precision. The parent replayed the saved patch against a fresh copy of `6d25055`: eight targeted optional tests and both populated records passed. The review memo gives application and verification commands. The patch includes the corresponding specification and testing instructions, and leaves F1–F4 for discussion.
+Six regression tests were added to `tests/record/`, which now has 14. A per-check `compared_with` relation was deferred. Agreement between Claude and Codex is not adoption: D017 remains a proposal for Barry.
 
 After adding the D017 review artefacts and actual-work account, the repository checker passed on 79 configured text files, all 39 maintenance tests passed with none skipped, both populated records validated, and `git diff --check` passed. These results coexist with the reproduced defects in the unchanged validator.
 

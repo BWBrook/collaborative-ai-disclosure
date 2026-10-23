@@ -110,6 +110,7 @@ claims:
         evidence_source: The scaffold itself; Claude has not seen the original conversation.
         shares: [framing, data]
         outcome: passed
+        observed: No inconsistency found between the synthesis and the scaffold's principles, modes and decision log.
         residual: Cannot detect misrepresentation of the original conversation.
         preserved_at:
           - path: provenance/reviews/2026-10-23-claude-first-pass.md
@@ -147,6 +148,7 @@ claims:
         evidence_source: Claude Code session transcript 0882c574-d3aa-417a-8a5a-c151dff00a2c (private, on wsl-laptop).
         shares: []
         outcome: passed
+        observed: Exact match to the user message timestamped 2026-10-23T04:22:25Z.
         residual: Cannot detect whether the framing of the offered options steered the decision.
         preserved_at:
           - note: Session transcript on wsl-laptop (private).
@@ -210,6 +212,8 @@ claims:
         evidence_source: https://arxiv.org/abs/2506.07962 (abstract only).
         shares: []
         outcome: passed
+        observed: All four quoted phrases matched the raw abstract text.
+        residual: Abstract only. Whether the draft used the finding appropriately is C4.b.
         preserved_at:
           - url: https://arxiv.org/abs/2506.07962
         date: 2026-10-23
@@ -227,6 +231,9 @@ claims:
         observed: >-
           The draft treated 60% conditional agreement on multiple-choice items as calibrating
           long-form review between two systems, and implied a temporal decline. Both were removed.
+        residual: >-
+          Selected sections only, not the appendices. The paper does not calibrate agreement
+          between the two systems in this collaboration.
         preserved_at:
           - note: Correspondence board thread 93, message 2271 (private).
           - path: provenance/reviews/2026-10-23-codex-warrant-review.md
@@ -256,6 +263,7 @@ claims:
         shares: [framing]
         outcome: issues-fixed
         observed: The authors state the common faults involved no ambiguity, inconsistency or deficiency in the specification.
+        residual: Selected passages only; neither participant read the whole 47-page document or replayed the experiment.
         preserved_at:
           - url: https://people.cs.rutgers.edu/~uli/cs673/papers/EvaluationMultiVersionProgramming86.pdf
           - note: Correspondence board thread 93, message 2265 (private).
@@ -282,6 +290,7 @@ claims:
         evidence_source: The repository's tests.
         shares: [specification, code]
         outcome: passed
+        observed: check_repo.py passed and all 46 unit tests passed.
         residual: At that run, the maintenance tooling had not received a separate code review.
         preserved_at:
           - note: Test run on 2026-10-23 against commit 5955420; Codex is now revising the tooling and tests.
@@ -356,18 +365,40 @@ claims:
           git apply --check passed. The current checkout's validator remains unchanged.
         residual: >-
           Patch author and test author share assumptions. The patch does not address the four
-          conceptual findings and awaits Claude's response and implementation-file release.
+          conceptual findings.
         preserved_at:
           - path: provenance/reviews/2026-10-23-d017-mechanical-proposal.patch
           - path: provenance/reviews/2026-10-23-codex-structured-record-review.md
         date: 2026-10-23
+      - id: C7.c
+        method: cross-provider-review
+        description: >-
+          Claude, the author of D017, replayed Codex's diagnostic against the unchanged validator
+          and assessed each finding against the specification's stated requirements.
+        performed_by: [claude]
+        target: Findings that are wrong, overstated or unreproducible.
+        oracle: The diagnostic's output and the specification's stated reporting requirements.
+        evidence_source: provenance/reviews/d017_adversarial_cases.py run at 138ee51.
+        shares: [specification, framing]
+        outcome: passed
+        observed: >-
+          All twelve diagnostic cases reproduced as Codex reported. Claude agreed all six findings
+          and implemented them; after the changes, the honest cases pass, the defect cases fail
+          without crashing, and the 14 optional record tests pass.
+        residual: >-
+          Claude wrote D017, so its assessment shares the specification and framing. Agreement
+          between the two systems settles implementation, not adoption or usability with real records.
+        preserved_at:
+          - path: provenance/reviews/2026-10-23-codex-structured-record-review.md
+          - path: tests/record/test_validate_record.py
+        date: 2026-10-23
     limits: >-
-      Review and patch preparation are complete; agreement and application remain pending.
-      No new principle or operational proposal has been adopted.
+      Review, agreement and implementation are complete. D017 remains a proposal; neither the
+      repairs nor model agreement adopt it or show it is usable with real research records.
 
 gaps:
   - The ChatGPT model identifier was not recorded.
   - The raw founding conversation is not in the repository.
   - No independent human review of the source register or complete structured record is recorded; Barry's adoption of P06 is separately documented.
-  - D017's six review findings await Claude's response; its implementation files retain the reviewed defects.
+  - D017 has not been tried on a real research record beyond this repository; usability is untested.
   - Some supplementary files, images and external applications were not inspected; exact scopes are in references/source-register.json.

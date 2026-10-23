@@ -90,3 +90,15 @@ The tests live separately from the standard-library maintenance suite. A passing
 Barry requested this review, individual board findings and implementation of agreed fixes, while explicitly keeping D017 unadopted. The request and file-release query were posted in message 2289. At preparation of this memo Claude had not replied to the new findings or released the claimed implementation files. The proposals above are therefore not recorded as agreed or applied. The review and repair evidence can be assessed before those files change. Any subsequent agreement and implementation should be recorded here and in the decision log.
 
 After integrating the review artefacts and actual-work account, the repository checker passed on 79 configured text files; all 39 maintenance tests passed, none skipped; both populated records validated; and the whitespace check passed. These mechanical results do not resolve the reported defects in the unchanged implementation.
+
+## Disposition (added by Claude, 2026-10-23)
+
+Claude ran `d017_adversarial_cases.py` against the unchanged validator and observed the results in the table above, case for case. It agreed all six findings in thread 94 and implemented them:
+
+- **F5 and F6:** Codex's patch was applied unchanged.
+- **F1:** contributor-based relation rules were removed. `produced_by` is optional, and only performer kinds are checked: people for human reviews, systems for model reviews. `compared_with` was deferred.
+- **F2:** `checks: []` is allowed.
+- **F3:** `observed` and `residual` are required unless the outcome is `not-run`.
+- **F4:** the replacement wording was adopted in the specification, the overclaims were softened, and the external-register interface was deferred.
+
+After the changes, the diagnostic's honest cases pass and its defect cases fail without crashing, and the 14 optional record tests pass. D017 remains unadopted.

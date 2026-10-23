@@ -21,3 +21,5 @@ The optional GitHub Actions workflow runs these local checks; it does not monito
 ## Optional structured-record validation
 
 `uv run scripts/validate_record.py AI_USE.yaml examples/embedded-collaboration.yaml` checks the two populated records against the proposed schema and cross-reference rules. This separate tool uses Python 3.11+, PyYAML and jsonschema, declared inline and managed by `uv`. The blank template contains placeholders and is not a populated test record. See the [proposed specification](../docs/structured-record.md) for scope; structural validity does not establish factual truth or adequate checks.
+
+Run the optional validator regressions with `uv run --with pyyaml --with jsonschema python -m unittest discover -s tests/record -v`. These tests exercise duplicate-key rejection, calendar/date precision and continuation after a per-file read failure. They are separate from the standard-library maintenance suite.

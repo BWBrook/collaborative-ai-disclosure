@@ -50,24 +50,24 @@ claims:                  # consequential claims the AI-involved work bears on; o
   - id: C1
     statement: <the claim>
     location: <section, figure or table>
-    produced_by: [<every participant involved, unordered>]
-    produced_through: <how the claim was produced, in a sentence>
+    produced_by: [<optional: participants involved, as far as known; unordered, no shares>]
+    produced_through: <how the claim was produced, in a sentence; say so if not recoverable>
     failure_modes:
       - <a consequential way the AI-involved work could make this wrong>
-    checks:
+    checks:            # [] if none are reported; then explain the gap in limits
       - id: C1.a
         method: other   # self-review | same-provider-review | cross-provider-review | generator-written-tests | reproduction |
                         # independent-reimplementation | human-summary-review | human-primary-review | known-answer-test |
                         # external-evidence | other. A label sets no strength.
         description: <what was actually done>
-        performed_by: [<participant id>]
+        performed_by: [<participant id; intended performer if not-run>]
         target: <the failure this check is aimed at>
         oracle: <how the expected answer was established>
         evidence_source: <where the evidence came from>
         shares: not assessed   # or a list from: model, context, specification, framing, data, code ([] = none identified)
         outcome: not-run       # passed | failed | issues-fixed | inconclusive | not-run
-        observed: <optional: what was actually seen>
-        residual: <optional: what this check leaves unchecked>
+        observed: <required unless not-run: what was actually seen, or "not recorded">
+        residual: <required unless not-run: what this check leaves unchecked, or "not assessed">
         preserved_at:
           - note: <path:, url: or note: saying where the record of the check is kept>
     limits: <what the checks together do not establish>
