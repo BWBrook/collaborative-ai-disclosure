@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Draft citation metadata for maintainer review. Cite the repository version actually used; add its verified URL after publication."
+title: "Collaborative AI Research Disclosure: a narrative-first draft framework"
+authors:
+  - family-names: Brook
+    given-names: Barry W.
+version: 0.1.0-draft
+abstract: >-
+  A draft framework and reusable templates for explaining intertwined
+  human-AI research workflows, with overlapping interaction modes,
+  narrative-first disclosure, provenance guidance and policy-source records.
+keywords:
+  - research transparency
+  - human-AI collaboration
+  - AI disclosure
+  - scientific provenance
+  - reproducibility

@@ -1,0 +1,19 @@
+name: Repository checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2; review before first public run
+      - name: Check structure and local references
+        run: python3 scripts/check_repo.py
+      - name: Exercise maintenance tools
+        run: python3 -m unittest discover -s tests -v
+      - name: Report policy-review reminders without fetching
+        run: python3 scripts/policy_age.py
