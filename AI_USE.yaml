@@ -422,6 +422,27 @@ claims:
           - path: tests/record/test_validate_record.py
           - path: HANDOVER.md
         date: 2026-10-23
+      - id: C7.e
+        method: reproduction
+        description: >-
+          Codex inspected Claude's c1bf1b4 scope-report repair and reran the maintenance
+          and optional record suites plus both populated records.
+        performed_by: [codex]
+        target: A schema-failing record reported as having undergone downstream checks.
+        oracle: The validator's early-return path and explicit skipped-stage regression cases.
+        evidence_source: scripts/validate_record.py and local test output.
+        shares: [context, specification, code]
+        outcome: passed
+        observed: >-
+          Both new cases passed; all 39 maintenance and 18 optional record tests passed
+          with none skipped, the checker passed on 80 text files and both records validated.
+        residual: >-
+          This checks reporting of executed stages, not factual truth, semantic completeness
+          or the adequacy of the checks in a record.
+        preserved_at:
+          - path: scripts/validate_record.py
+          - path: tests/record/test_validate_record.py
+        date: 2026-10-23
     limits: >-
       The six-finding review, agreement, implementation and scoped follow-up checks are complete.
       D017 remains a proposal; neither the repairs nor model agreement adopt it or show it is
@@ -431,5 +452,5 @@ gaps:
   - The ChatGPT model identifier was not recorded.
   - The raw founding conversation is not in the repository.
   - No independent human review of the source register or complete structured record is recorded; Barry's adoption of P06 is separately documented.
-  - D017 has not been tried on a real research record beyond this repository; usability is untested.
+  - Exploratory encodings do not establish D017's usability; author burden and reader interpretation remain untested.
   - Some supplementary files, images and external applications were not inspected; exact scopes are in references/source-register.json.

@@ -498,8 +498,19 @@
       "volume": "33",
       "issue": "3",
       "article_number": "2544331",
-      "scope": "Complete main article PDF text, Table 1, declarations and references read. Supplementary File 1 was not retrieved. Publisher HTML first returned HTTP 403; direct publisher PDF subsequently succeeded. Institutional repository explicitly had no full text; supplementary-page retrieval yielded no usable supplement.",
-      "note": "Source ID retains first-online year 2025; assigned issue is 2026. Section 4.3 limits delegable tasks on capability grounds. Section 5.1 proposes contribution fractions for discussion, not a settled measurement rule. Section 5.4 explicitly separates task classification from assessing scholarly quality."
+      "scope": "Complete main article PDF text, Table 1, declarations and references read. Supplementary File 1 was not retrieved. Publisher HTML first returned HTTP 403; direct publisher PDF subsequently succeeded. Institutional repository explicitly had no full text; supplementary-page retrieval yielded no usable supplement. Subsequent source cross-check re-inspected sections 4.1 and 5.2.1: the published sample already includes supervision and no-AI-authorship assertions; these are not solely generator additions.",
+      "note": "Source ID retains first-online year 2025; assigned issue is 2026. Section 4.3 limits delegable tasks on capability grounds. Section 5.1 proposes contribution fractions for discussion, not a settled measurement rule. Section 5.4 explicitly separates task classification from assessing scholarly quality. The supervision/authorship wording is a published template choice implemented by the generator. Its applicability still depends on the particular research account.",
+      "inspection_history": [
+        {
+          "access_status": "inspected",
+          "scope": "Complete main article PDF text, Table 1, declarations and references read. Supplementary File 1 was not retrieved. Publisher HTML first returned HTTP 403; direct publisher PDF subsequently succeeded. Institutional repository explicitly had no full text; supplementary-page retrieval yielded no usable supplement.",
+          "note": "Source ID retains first-online year 2025; assigned issue is 2026. Section 4.3 limits delegable tasks on capability grounds. Section 5.1 proposes contribution fractions for discussion, not a settled measurement rule. Section 5.4 explicitly separates task classification from assessing scholarly quality.",
+          "last_attempted": "2026-10-23",
+          "last_inspected": "2026-10-23",
+          "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+          "human_review": "pending"
+        }
+      ]
     },
     {
       "access_status": "inspected",
@@ -516,8 +527,19 @@
       "year": 2026,
       "url": "https://github.com/panbibliotekar/gaidet-declaration/blob/7f21a877c7fbdb3f35bc0da2e2b156e6e70b2551/index.html",
       "version": "Repository commit 7f21a877c7fbdb3f35bc0da2e2b156e6e70b2551 (29 September 2026)",
-      "scope": "Complete English index.html and _data/terms.yml read through the GitHub connector; no browser interaction or execution test. Repository HEAD resolved immediately after retrieval. This is implementation evidence, separate from the article.",
-      "note": "The generator accepts optional comments but automatically inserts a full-human-supervision assertion. That assertion is not elicited or verified by an input field."
+      "scope": "Complete English index.html and _data/terms.yml read through the GitHub connector at the pinned commit. Subsequently executed the cached generateDeclaration function locally with a stub DOM and empty and illustrative inputs; both inserted the supervision and no-AI-authorship wording and reused the delegator field as submitter. No browser interaction or live-site submission. Article section 5.2.1 was cross-checked for the same default prose.",
+      "note": "The generator accepts optional comments but automatically inserts supervision and no-AI-authorship assertions without eliciting their factual basis. The article sample declaration contains the same assertions: this is a published template design implemented by the generator, not an implementation-only departure.",
+      "inspection_history": [
+        {
+          "access_status": "inspected",
+          "scope": "Complete English index.html and _data/terms.yml read through the GitHub connector; no browser interaction or execution test. Repository HEAD resolved immediately after retrieval. This is implementation evidence, separate from the article.",
+          "note": "The generator accepts optional comments but automatically inserts a full-human-supervision assertion. That assertion is not elicited or verified by an input field.",
+          "last_attempted": "2026-10-23",
+          "last_inspected": "2026-10-23",
+          "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+          "human_review": "pending"
+        }
+      ]
     },
     {
       "access_status": "inspected",

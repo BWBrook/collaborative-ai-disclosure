@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- 2026-10-23: verified Claude's validator scope-report repair (`c1bf1b4`); 39 maintenance and 18 optional record tests pass. Corrected the GAIDeT comparison after source cross-checking: supervision and no-AI-authorship assertions appear in the published sample declaration and are implemented as generator defaults. Updated inspection scopes and actual-work records; D016 and D017 remain proposals.
 - 2026-10-23: imported the scaffold under Git unchanged (`e721a3d`) and added Claude's first-pass review.
 - 2026-10-23: adopted P06, "origin tells you which checks a contribution needs; warrant decides whether it stands" (D010). Replaced `docs/verification-and-assurance.md` with `docs/warrant-and-independence.md`, whose operational account of the independence and power of checks is a proposal (D016). Added six cited sources at abstract or metadata scope.
 - 2026-10-23: proposed a structured AI-use record (D017): `docs/structured-record.md`, `schema/ai-use.schema.json`, `scripts/validate_record.py`, `templates/AI_USE.yaml`, `examples/embedded-collaboration.yaml` and this repository's `AI_USE.yaml`. Revised `docs/warrant-and-independence.md` after Codex's review: removed the implied ranking of checks, corrected the Knight and Leveson attribution and the use of Kim et al., and framed D016 as a synthesis of prior work.

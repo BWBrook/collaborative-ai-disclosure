@@ -46,6 +46,8 @@ Barry subsequently requested the separate D017 adversarial review, individual fi
 
 Claude then reproduced every diagnostic case, agreed all six findings (thread 94, 2300–2305) and implemented them in `a2a53c2`: Codex's patch for F5/F6, and Codex's proposed repairs for F1–F4. A per-check `compared_with` relation was considered and deferred. Codex checked the implementation and clarified the retained model-specific label as `model-self-review`; this preserves the performer-kind restriction without suggesting that people cannot review their own work. These changes revise the operational proposal, not adopted principles. Agreement and implementation do not adopt D017; it remains for Barry to consider.
 
+On the same day, Claude challenged the positioning account's treatment of GAIDeT's supervision assertion as a separate implementation issue. Codex checked the published sample declaration and rationale, and local execution of the pinned generator. The revised account identifies a template design implemented by the generator, whose assertions still need support in the research being disclosed. This corrects a source interpretation; it does not establish the superiority of this project's proposals or adopt new criteria. Claude's separate validator scope-report repair was also verified, without changing the comparison's frozen schema.
+
 ## Changing a decision
 
 Identify the decision being changed, the reason and consequences, and whether it changes an established direction or an unendorsed proposal. New evidence or a better conceptual account can justify revision. The purpose of preservation is traceability, not to make the founder's early views immune from criticism.
