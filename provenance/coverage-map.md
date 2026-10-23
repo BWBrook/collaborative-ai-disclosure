@@ -11,8 +11,8 @@ This map retains the ideas from the initial long answer and the five subsequent 
 | Three-layer declaration architecture | [Disclosure architecture](../docs/disclosure-architecture.md) | Practical draft; not three mandatory forms |
 | Long-running models and version uncertainty | [Preservation](../docs/provenance-and-preservation.md), [AI_USE template](../templates/AI_USE.md) | No invented version history |
 | Original declaration wording | [Historical statement](original-working-statement.md) | Broad verification assertions need project-specific evidence |
-| Concrete checks instead of generic oversight | [Verification discussion](../docs/verification-and-assurance.md) | Unanswered sixth topic; not yet endorsed |
-| Labour provenance versus knowledge provenance | [Verification discussion](../docs/verification-and-assurance.md) | Attribution, rights and ethics still matter independently |
+| Concrete checks instead of generic oversight | [Warrant and independence](../docs/warrant-and-independence.md) | P06 adopted 2026-10-23; operational account under review |
+| Labour provenance versus knowledge provenance | [Warrant and independence](../docs/warrant-and-independence.md) | Attribution, rights and ethics still matter independently |
 | Git history and messy discovery | [Preservation](../docs/provenance-and-preservation.md) | Not an assertion of complete or unprecedented recording |
 | Clean result package plus working history | [Preservation](../docs/provenance-and-preservation.md) | Clean does not mean concealing consequential analytic choices |
 | Senior-scientist contribution and motivation | [P03](../docs/principles.md), [founding discussion](founding-discussion.md) | No labour-percentage criterion |

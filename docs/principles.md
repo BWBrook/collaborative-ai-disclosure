@@ -1,6 +1,6 @@
 # Working principles
 
-**Status:** principles P01–P05 reflect the direction established in the founding discussion. Their wording below is a scaffold synthesis, not a verbatim ratified policy. P06 is unresolved. See the [decision log](../provenance/decision-log.md).
+**Status:** principles P01–P05 reflect the direction established in the founding discussion. Their wording below is a scaffold synthesis, not a verbatim ratified policy. Barry adopted P06 on 2026-10-23. See the [decision log](../provenance/decision-log.md).
 
 ## P01 — The workflow is the primary unit of disclosure
 
@@ -24,7 +24,7 @@ Human contribution may consist of motivation, question-setting, knowledge of the
 
 No operational 50% boundary between assistance and governance was adopted in the founding discussion. Time, output volume and intellectual consequence are not interchangeable quantities. A low share of execution neither proves nor disproves meaningful governance.
 
-Governance must nevertheless mean something substantive. A title, an initial instruction or nominal sign-off is not by itself evidence that consequential choices were understood and evaluated. The appropriate evidential account is a live design question, addressed provisionally under P06.
+Governance must nevertheless mean something substantive. A title, an initial instruction or nominal sign-off is not by itself evidence that consequential choices were understood and evaluated. P06 gives governance its substance: designing the checks a claim needs, acting as an independent check, and ruling on failures.
 
 The principal-investigator/postdoctoral-supervision analogy is useful for distinguishing execution from direction. It is not an equivalence between an AI system and a human researcher, nor a substitute for evaluating the actual responsibilities involved.
 
@@ -52,8 +52,12 @@ The framework does not replace human-author contribution statements that a journ
 
 This rule does not waive research ethics, privacy duties, methodological standards or editorial restrictions. It prevents the template from quietly substituting its preferred division of labour for what actually occurred.
 
-## P06 — Open: verification, acceptance and scientific warrant
+## P06 — Origin sets the checks; warrant decides acceptance
 
-The next question posed in the discussion was whether the process by which a contribution becomes warranted should matter more than its human or AI origin. Barry did not answer that question before requesting the repository.
+**Origin tells you which checks a contribution needs; warrant decides whether it stands.**
 
-The [verification discussion draft](verification-and-assurance.md) develops possible directions for consideration. It must not be presented as an endorsed sixth principle or as proof that reproducibility alone establishes validity.
+Confidence in a claim rests on the evidence and reasoning that justify it, not on whether a human or an AI proposed it. Origin still matters epistemically, because different generators fail in characteristic ways, and knowing the origin tells you which checks the contribution needs. Origin matters separately for credit, rights and accountability, which the authorship and responsibility statements handle.
+
+The epistemic weight of a disclosure therefore rests on how the claims were checked, not on how the labour was divided. This is the basis for P05's narrative-first default.
+
+Claude proposed this principle and Barry adopted it on 2026-10-23 ([D010](../provenance/decision-log.md)). The operational account of how to judge checks, by their independence and their power, is a proposal under review ([D016](../provenance/decision-log.md)). See [warrant and independence](warrant-and-independence.md).

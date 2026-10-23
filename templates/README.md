@@ -18,6 +18,6 @@ Tool identity, approximate periods, particular functions and human involvement c
 
 The templates are deliberately neutral about whether a scientist personally typed the first draft. Do not add “AI only improved the language” unless that is true. Do not assert that humans originated every idea or personally reviewed every intermediate action unless the records support it.
 
-The template-specific verification clauses are **proposals**, not a resolved sixth principle. Their inclusion helps expose what needs discussion; it does not certify a project or settle what adequate assurance means.
+P06 is adopted: warrant, not origin, decides whether a claim stands. The specific verification clauses in the templates remain **proposals** under [warrant and independence](../docs/warrant-and-independence.md). They do not certify a project or settle what adequate assurance means.
 
 The [fictional examples](../examples/README.md) show different ways of filling out a narrative. They are not accounts of Barry's actual research and must not be copied as evidence that checks occurred.

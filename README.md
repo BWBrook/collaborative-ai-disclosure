@@ -22,7 +22,9 @@ The founding discussion established five working design commitments:
 4. **Predominant mode, with overlapping modes.** Use categories to orient readers, not to force messy workflows into exclusive boxes.
 5. **Narrative first; role labels optional.** Explain what happened without requiring a partition of intellectual labour that did not exist.
 
-Their precise wording remains editable. **The sixth topic—verification and the warrant for scientific claims—was posed but not answered before this scaffold was requested.** Its treatment here is explicitly a discussion draft, not a settled position attributed to the founder.
+Their precise wording remains editable. A sixth commitment was adopted on 2026-10-23:
+
+6. **Origin tells you which checks a contribution needs; warrant decides whether it stands.** A disclosure's epistemic weight rests on how the claims were checked, not on who did which task. See [warrant and independence](docs/warrant-and-independence.md). The operational account of checks in that document is still a proposal.
 
 ## Where to start
 

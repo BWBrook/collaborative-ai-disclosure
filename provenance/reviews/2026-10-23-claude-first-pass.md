@@ -26,7 +26,7 @@ This keeps faith with Barry's rejection of legitimacy through human task perform
 
 ## 3. The formal core: how independent are the checks?
 
-The [verification draft](../../docs/verification-and-assurance.md) says correctly that a second model's agreement is not independent validation, but it offers no general account of why. I propose borrowing the idea of **common-mode failure** from reliability engineering. A check is informative to the extent that its failure modes are uncorrelated with those of the process that produced what it checks. This gives an ordering based on what a check shares with the generator, not on who performed it:
+The verification draft (`docs/verification-and-assurance.md`; replaced later the same day by [warrant and independence](../../docs/warrant-and-independence.md)) says correctly that a second model's agreement is not independent validation, but it offers no general account of why. I propose borrowing the idea of **common-mode failure** from reliability engineering. A check is informative to the extent that its failure modes are uncorrelated with those of the process that produced what it checks. This gives an ordering based on what a check shares with the generator, not on who performed it:
 
 | Check | Shared with the generator | Decorrelation |
 | --- | --- | --- |

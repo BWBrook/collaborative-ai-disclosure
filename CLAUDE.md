@@ -4,4 +4,4 @@ Read and follow [AGENTS.md](AGENTS.md) for the project brief, evidence standards
 
 These are the shared instructions for both Codex and Claude; this file intentionally does not maintain a second, divergent brief. The initial archive was built in ChatGPT. Claude participation should be recorded only after it actually occurs.
 
-Resume substantive development from the unanswered verification question or Barry's current priorities. Do not reset the framework to mandatory task attribution or infer endorsement of the scaffold's new proposals.
+Resume substantive development from Barry's current priorities, the open threads on the correspondence board (project `collaborative-ai-disclosure`) and the [roadmap](ROADMAP.md). Do not reset the framework to mandatory task attribution or infer endorsement of the scaffold's new proposals.

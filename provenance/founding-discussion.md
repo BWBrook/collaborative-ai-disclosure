@@ -84,6 +84,8 @@ The narrow question was whether the process by which a candidate contribution be
 
 The repository preserves an explicitly provisional discussion of verification. It must not be converted into an agreed sixth principle without further deliberation.
 
+*Postscript, 2026-10-23:* after this founding discussion, Barry adopted a proposition drafted by Claude as P06. See [D010](decision-log.md).
+
 ## 10. The handover request
 
 Barry stopped the serial ideation and requested a draft repository to unpack in WSL, with further development using Codex and Claude and eventual publication on GitHub. He authorised creation of a public repository if suitable tools existed, otherwise a downloadable ZIP.

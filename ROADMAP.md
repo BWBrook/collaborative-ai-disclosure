@@ -1,6 +1,6 @@
 # Roadmap
 
-This is an editable backlog, not a fixed sequence of twelve principles. Topic 6 is where the founding discussion stopped; later topics below are proposed continuations.
+This is an editable backlog, not a fixed sequence of twelve principles. Topic 6 is where the founding discussion stopped; it was resolved on 2026-10-23 (D010). Later topics below are proposed continuations.
 
 ## First tranche: stabilise the draft
 
@@ -8,7 +8,7 @@ Review conceptual fidelity against the founding discussion; examine the licensin
 
 ## Resume the conceptual discussion
 
-**6. Verification and scientific warrant.** What should justify acceptance of a contribution, and how does that relate to origin and attribution?
+**6. Verification and scientific warrant.** Resolved: origin tells you which checks a contribution needs; warrant decides whether it stands. The operational account is in [warrant and independence](docs/warrant-and-independence.md) and is under review.
 
 **7. Evidence for governance under delegation.** What distinguishes substantive scientific evaluation from nominal endorsement when AI performs most execution?
 

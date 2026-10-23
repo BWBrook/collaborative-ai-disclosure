@@ -18,7 +18,11 @@
 
 **Clean research release:** a focused, versioned research package that generates and explains the reported outputs without irrelevant development clutter. It must retain information necessary to interpret the findings.
 
-**Scientific warrant:** the evidence and reasoning that justify a claim, conditional on its assumptions and limitations. Its relationship to AI-use disclosure is an open part of this framework.
+**Scientific warrant:** the evidence and reasoning that justify a claim, conditional on its assumptions and limitations. Under P06, warrant decides whether a claim stands; origin indicates which checks it needs.
+
+**Independence (of a check):** how little a check shares with the process that produced what it checks, including the model, context, specification, framing and data. Proposal under D016.
+
+**Power (of a check):** whether a check can detect the failure that matters for a particular claim. Proposal under D016.
 
 **Source check:** examination of a specified source for a specified purpose at a recorded time. Finding a title, reading an abstract and checking an actual policy clause are different levels of evidence.
 

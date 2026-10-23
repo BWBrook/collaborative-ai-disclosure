@@ -296,6 +296,129 @@
       "last_inspected": "2026-09-08",
       "checked_by": "drafting assistant",
       "human_review": "pending"
+    },
+    {
+      "id": "SRC-KNIGHT-LEVESON-1986",
+      "kind": "article",
+      "title": "An experimental evaluation of the assumption of independence in multiversion programming",
+      "authors": [
+        "John C. Knight",
+        "Nancy G. Leveson"
+      ],
+      "year": 1986,
+      "doi": "10.1109/TSE.1986.6312924",
+      "url": "https://doi.org/10.1109/TSE.1986.6312924",
+      "access_status": "partial",
+      "scope": "Crossref metadata (IEEE TSE SE-12(1):96-109) and search-result summaries of the design and findings. Full text not read.",
+      "note": "27 independently written versions from one specification, one million tests; coincident failures substantially exceeded what independence predicts. Cited in docs/warrant-and-independence.md for common-mode failure.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Claude Opus 5.5",
+      "human_review": "pending"
+    },
+    {
+      "id": "SRC-KIM-2025",
+      "kind": "article",
+      "title": "Correlated Errors in Large Language Models",
+      "authors": [
+        "Elliot Myunghoon Kim",
+        "Avi Garg",
+        "Kenny Peng",
+        "Nikhil Garg"
+      ],
+      "year": 2025,
+      "doi": null,
+      "url": "https://arxiv.org/abs/2506.07962",
+      "access_status": "partial",
+      "scope": "arXiv abstract read; ICML 2025 (PMLR 267) listing seen in search results. Full paper not read.",
+      "note": "Over 350 LLMs; models agree 60% of the time when both err on one leaderboard dataset; shared provider and architecture raise correlation; larger, more accurate models have highly correlated errors even across providers.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Claude Opus 5.5",
+      "human_review": "pending"
+    },
+    {
+      "id": "SRC-PANICKSSERY-2024",
+      "kind": "article",
+      "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+      "authors": [
+        "Arjun Panickssery",
+        "Samuel R. Bowman",
+        "Shi Feng"
+      ],
+      "year": 2024,
+      "doi": null,
+      "url": "https://arxiv.org/abs/2404.13076",
+      "access_status": "partial",
+      "scope": "Search-result summaries of the abstract and NeurIPS 2024 listing. Full paper not read.",
+      "note": "Self-recognition by LLM evaluators correlates with self-preference bias.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Claude Opus 5.5",
+      "human_review": "pending"
+    },
+    {
+      "id": "SRC-HUANG-2024",
+      "kind": "article",
+      "title": "Large Language Models Cannot Self-Correct Reasoning Yet",
+      "authors": [
+        "Jie Huang",
+        "Xinyun Chen",
+        "Swaroop Mishra",
+        "Huaixiu Steven Zheng",
+        "Adams Wei Yu",
+        "Xinying Song",
+        "Denny Zhou"
+      ],
+      "year": 2024,
+      "doi": null,
+      "url": "https://arxiv.org/abs/2310.01798",
+      "access_status": "partial",
+      "scope": "Search-result summaries of the abstract and ICLR 2024 listing. Full paper not read.",
+      "note": "Intrinsic self-correction without external feedback does not reliably improve reasoning and can degrade it.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Claude Opus 5.5",
+      "human_review": "pending"
+    },
+    {
+      "id": "SRC-MUNAFO-2018",
+      "kind": "article",
+      "title": "Robust research needs many lines of evidence",
+      "authors": [
+        "Marcus R. Munafò",
+        "George Davey Smith"
+      ],
+      "year": 2018,
+      "doi": "10.1038/d41586-018-01023-3",
+      "url": "https://doi.org/10.1038/d41586-018-01023-3",
+      "access_status": "partial",
+      "scope": "Crossref metadata (Nature 553:399-401) and secondary summaries. Full text not read.",
+      "note": "Argues for triangulation across approaches with different biases rather than replication of one approach.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Claude Opus 5.5",
+      "human_review": "pending"
+    },
+    {
+      "id": "SRC-ORESKES-1994",
+      "kind": "article",
+      "title": "Verification, Validation, and Confirmation of Numerical Models in the Earth Sciences",
+      "authors": [
+        "Naomi Oreskes",
+        "Kristin Shrader-Frechette",
+        "Kenneth Belitz"
+      ],
+      "year": 1994,
+      "doi": "10.1126/science.263.5147.641",
+      "url": "https://doi.org/10.1126/science.263.5147.641",
+      "access_status": "partial",
+      "scope": "Crossref metadata (Science 263:641-646) and the abstract via search results. Full text not read.",
+      "note": "Verification and validation of models of open natural systems are impossible in the strict sense; confirmation is partial. The paper's arguments are contested.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Claude Opus 5.5",
+      "human_review": "pending"
     }
   ]
 }

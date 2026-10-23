@@ -12,7 +12,7 @@
 
 ## What was actually done
 
-{{Describe the checks, their scope, reference evidence, execution and review. Distinguish source inspection, benchmark testing, repeated execution, model critique and independent empirical evidence where relevant.}}
+{{Describe the checks, their scope, reference evidence, execution and review. Distinguish source inspection, benchmark testing, repeated execution, model critique and independent empirical evidence where relevant. For each check, say what it shares with the process that produced the artefact (model, context, specification, framing, data) and whether it could have detected the most plausible failure. See [warrant and independence](../docs/warrant-and-independence.md).}}
 
 ## Result and limitations
 

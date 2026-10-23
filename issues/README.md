@@ -4,7 +4,7 @@ These are local discussion briefs, **not issues already opened on GitHub**. A ma
 
 | Seed | Next decision |
 | --- | --- |
-| [001: Verification and scientific warrant](001-verification-and-warrant.md) | Resume the unanswered sixth question. |
+| [001: Verification and scientific warrant](001-verification-and-warrant.md) | Resolved 2026-10-23 (D010); operational account under review (D016). |
 | [002: Test the modes and narrative approach](002-test-modes-and-narratives.md) | Find whether the vocabulary helps real disclosures. |
 | [003: Audit sources and journal adaptation](003-source-and-policy-review.md) | Complete human review and resolve retrieval/scope gaps. |
 | [004: Proportionate provenance](004-proportionate-provenance.md) | Balance useful preservation with practical and ethical limits. |

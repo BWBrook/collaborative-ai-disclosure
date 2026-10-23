@@ -12,15 +12,15 @@ Do not infer a fixed twelve-principle structure from the earlier “about twelve
 
 ## Where the conversation stopped
 
-The sixth question concerned verification and how a candidate contribution becomes part of the accepted scientific account. The assistant proposed it; Barry had not responded. He had welcomed rigorous checking in the broader opening discussion, but had not settled the priority of scientific warrant versus origin, the necessary evidence, or how to describe AI-assisted checking.
+The founding discussion stopped at the sixth question: verification, and how a candidate contribution becomes part of the accepted scientific account. On 2026-10-23 Barry adopted Claude's proposed answer: "origin tells you which checks a contribution needs; warrant decides whether it stands" ([D010](provenance/decision-log.md)).
 
-The operational verification document, templates, policy records and implementation details in this scaffold are therefore **draft proposals for review**, not an authorised extension of Barry's philosophy. Their function is to create a useful starting surface for further development.
+The operational account of checks in [warrant and independence](docs/warrant-and-independence.md), together with the templates, policy records and implementation details, remains **draft proposals for review**. None of it is an authorised extension of Barry's philosophy until he adopts it.
 
 ## First development tranche
 
 Read the existing context and run the offline checks before broad rewriting. Produce a short issue-oriented audit: what accurately implements the stated direction, what the scaffold has added, and where terminology or evidence claims need refinement. Fix mechanical problems without changing the conceptual direction silently.
 
-The next substantive discussion should resume at topic 6, or follow Barry's new priorities. His earlier preference was one compact proposition at a time; do not ask him to re-answer settled topics or respond to a large questionnaire. He has now moved the project into a development workflow, so do not assume continued serial questioning is the only acceptable mode of progress.
+Topic 6 is resolved. Further conceptual discussion should follow Barry's priorities or the [roadmap](ROADMAP.md). His earlier preference was one compact proposition at a time; do not ask him to re-answer settled topics or respond to a large questionnaire. He has now moved the project into a development workflow, so do not assume continued serial questioning is the only acceptable mode of progress.
 
 ## Use Codex and Claude without inventing independence
 

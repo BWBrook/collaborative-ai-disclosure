@@ -8,7 +8,7 @@ Applies throughout this repository. Read `README.md`, `HANDOVER.md`, `docs/princ
 - Retain the four interaction modes as descriptive and overlapping, not a quality ladder. Propose definition changes explicitly.
 - Treat collaboration as a functional description. Do not imply AI consciousness, legal personhood, formal scientific authorship or accountability.
 - Keep the distinction between clean results, development history and deliberative records. Do not promise complete historical logs or access to model-internal reasoning.
-- The verification question was unanswered. Label new assurance criteria as proposals until explicitly adopted. Do not convert an assistant suggestion into a founder-endorsed principle.
+- P06 ("origin tells you which checks a contribution needs; warrant decides whether it stands") was adopted on 2026-10-23. The operational account of checks and any new assurance criteria remain proposals until explicitly adopted. Do not convert an assistant suggestion into a founder-endorsed principle.
 
 ## Evidence and honesty
 
