@@ -24,7 +24,7 @@ Human contribution may consist of motivation, question-setting, knowledge of the
 
 No operational 50% boundary between assistance and governance was adopted in the founding discussion. Time, output volume and intellectual consequence are not interchangeable quantities. A low share of execution neither proves nor disproves meaningful governance.
 
-Governance must nevertheless mean something substantive. A title, an initial instruction or nominal sign-off is not by itself evidence that consequential choices were understood and evaluated. P06 gives governance its substance: designing the checks a claim needs, acting as an independent check, and ruling on failures.
+Governance must nevertheless mean something substantive. A title, an initial instruction or nominal sign-off is not by itself evidence that consequential choices were understood and evaluated. An operational account of governance through the design and adjudication of checks is proposed in [warrant and independence](warrant-and-independence.md), under [D016](../provenance/decision-log.md); it was not adopted with P06.
 
 The principal-investigator/postdoctoral-supervision analogy is useful for distinguishing execution from direction. It is not an equivalence between an AI system and a human researcher, nor a substitute for evaluating the actual responsibilities involved.
 
@@ -56,8 +56,10 @@ This rule does not waive research ethics, privacy duties, methodological standar
 
 **Origin tells you which checks a contribution needs; warrant decides whether it stands.**
 
+*Rationale offered with the proposition by Claude; the adoption covers the proposition above, not every implication below.*
+
 Confidence in a claim rests on the evidence and reasoning that justify it, not on whether a human or an AI proposed it. Origin still matters epistemically, because different generators fail in characteristic ways, and knowing the origin tells you which checks the contribution needs. Origin matters separately for credit, rights and accountability, which the authorship and responsibility statements handle.
 
 The epistemic weight of a disclosure therefore rests on how the claims were checked, not on how the labour was divided. This is the basis for P05's narrative-first default.
 
-Claude proposed this principle and Barry adopted it on 2026-10-23 ([D010](../provenance/decision-log.md)). The operational account of how to judge checks, by their independence and their power, is a proposal under review ([D016](../provenance/decision-log.md)). See [warrant and independence](warrant-and-independence.md).
+Claude proposed this principle and Barry adopted it on 2026-10-23 ([D010](../provenance/decision-log.md)). The operational account of checks, their targets, shared failure pathways and limitations remains a proposal under review ([D016](../provenance/decision-log.md)). See [warrant and independence](warrant-and-independence.md).

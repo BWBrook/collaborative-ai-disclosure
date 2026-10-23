@@ -16,7 +16,7 @@ This log records working direction, not final ratification of every sentence. Da
 | D010 | Established direction (2026-10-23) | **Origin tells you which checks a contribution needs; warrant decides whether it stands.** Resolves the sixth topic. Proposed by Claude and adopted by Barry; see the adoption record below and [P06](../docs/principles.md). |
 | D011 | Scaffold proposal | Separate accepted direction, hypotheses, draft operational guidance and source-check status in the repository. |
 | D012 | Scaffold default, review before publication | Working title, directory name, version, licences and preliminary maintainer arrangements. |
-| D013 | Scaffold proposal | Dependency-free checks, local packaging, optional policy-age warnings and draft issue seeds. These are not a scientific certification system. |
+| D013 | Scaffold proposal; tooling revised 2026-10-23 | Dependency-free core checks, optional policy-age warnings and draft issue seeds. The initial local ZIP packager was retired once Git history existed; its bootstrap report and original import receipt were retained. These are maintenance choices, not scientific certification. |
 | D014 | Deferred | Community governance beyond the initial maintainer; engagement strategy; publication venue for the framework. |
 | D015 | Deferred | Exact retention standards, minimum verification account and optional interoperability with existing role taxonomies. |
 | D016 | Proposal under review (Claude, 2026-10-23; revised the same day after Codex's review, board thread 93) | Operational account for D010, framed as a synthesis of established ideas rather than a new principle. Record each check's target, oracle, evidence source, applier, result, possible shared pathways with the generator, and residual gap. Method labels set no default strength. See [warrant and independence](../docs/warrant-and-independence.md). Not adopted. |
@@ -33,6 +33,14 @@ This log records working direction, not final ratification of every sentence. Da
 **How the reply was produced:** the text matches, word for word, a reply option that Claude had drafted and offered in the app's next-step box. Barry selected it rather than typing his own wording. The decision is his; the words were drafted by Claude.
 
 **Scope of the adoption:** the proposition. The operational account of checks (independence, power and the classes of check) was not part of what was put to Barry, and it remains a proposal under D016.
+
+## Review and implementation record, 2026-10-23
+
+At Barry's request, Codex reviewed D016, read the specified prior art through a delegated reading team and pruned the scaffold. File ownership and amendments to the proposed split were recorded in Correspondence threads 92–94. These instructions authorised reversible work; they did not adopt the operational proposals.
+
+The [Codex review](reviews/2026-10-23-codex-warrant-review.md) records eight findings. Claude revised the warrant draft in `467f2d5` and `dbd299a`; Codex checked those revisions and repaired P03's accidental presentation of proposed governance criteria as adopted direction. P06's supporting rationale is now distinguished from its adopted proposition. D016 and D017 remain proposals.
+
+The [positioning synthesis](../docs/positioning.md) replaces the first-pass review's task-only characterisation of prior frameworks with a source-based comparison. Earlier dated reviews remain as development history. The original manifest remains local and ignored because Git did not preserve that receipt; its 68 listed hashes match the unchanged import `e721a3d`. Pruning reduced packaging machinery while retaining checks of record consistency. No public remote, release or publisher-policy refresh formed part of this work.
 
 ## Changing a decision
 

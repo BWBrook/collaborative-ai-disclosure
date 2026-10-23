@@ -10,11 +10,14 @@ artefact:
 narrative: AI_USE.md
 
 record:
-  prepared_by: [claude]
+  prepared_by: [claude, codex]
   prepared_on: 2026-10-23
   human_review:
     status: pending
-    note: Drafted by Claude. Neither Barry nor Codex has reviewed this record.
+    note: >-
+      Drafted by Claude and updated by Codex for its own work, source-reading scopes and
+      maintenance results. No complete human review is recorded. Codex's edits and
+      structural validation do not constitute a separate review of the proposed format.
 
 participants:
   people:
@@ -45,14 +48,19 @@ participants:
     - id: codex
       product: Codex
       provider: OpenAI
-      model: GPT-6 (self-reported in correspondence-board posts)
+      model: GPT-6 (environment description; exact deployment identifier not exposed)
       model_source: contemporaneous-note
       period: {from: 2026-10-23, to: ongoing}
       interaction_record: partial-original
-      configuration: Uses bounded subagents for source reading and maintenance (board thread 92).
+      configuration: >-
+        Two direct delegates handled source reading and maintenance; the source reader
+        delegated Cwik/AIdIT inspection to a further Codex collaborator. Model settings
+        were inherited. No finer model identifier or reasoning-effort setting is inferred.
       description: >-
-        Reviewed the warrant draft, reads prior art and prunes the scaffold. Entry written by
-        Claude from board posts; Codex should correct it.
+        Reviewed the warrant draft against counterexamples and selected primary texts,
+        led the six-framework reading and positioning work, pruned maintenance tooling,
+        repaired adoption-status wording, ran integration checks, and updated the records.
+        This model attribution is a contemporaneous record of the environment's description.
 
 relationship:
   predominant_mode: governed-collaboration
@@ -203,18 +211,21 @@ claims:
         date: 2026-10-23
       - id: C4.b
         method: external-evidence
-        description: Codex read sections 1, 3-4 and 5.2 of arXiv v1 against the draft's use of the paper.
+        description: >-
+          Codex inspected the abstract, sections 1, 3-4, relevant section 5.2 results and
+          section 6 of arXiv v1 against the draft's use of the paper; not the full appendices.
         performed_by: [codex]
         target: Transfer of the finding beyond what the paper measured.
         oracle: The paper's methods and stated limitations.
         evidence_source: https://arxiv.org/html/2506.07962v1 (selected sections).
-        shares: []
+        shares: [framing, data]
         outcome: issues-fixed
         observed: >-
           The draft treated 60% conditional agreement on multiple-choice items as calibrating
           long-form review between two systems, and implied a temporal decline. Both were removed.
         preserved_at:
           - note: Correspondence board thread 93, message 2271 (private).
+          - path: provenance/reviews/2026-10-23-codex-warrant-review.md
         date: 2026-10-23
     limits: Neither participant has read the whole paper.
 
@@ -238,20 +249,23 @@ claims:
         target: Misattributed mechanism.
         oracle: The authors' own analysis of the common faults.
         evidence_source: Full-text manuscript hosted at Rutgers; selected passages, not the whole 47-page document.
-        shares: []
+        shares: [framing]
         outcome: issues-fixed
         observed: The authors state the common faults involved no ambiguity, inconsistency or deficiency in the specification.
         preserved_at:
           - url: https://people.cs.rutgers.edu/~uli/cs673/papers/EvaluationMultiVersionProgramming86.pdf
           - note: Correspondence board thread 93, message 2265 (private).
+          - path: provenance/reviews/2026-10-23-codex-warrant-review.md
         date: 2026-10-23
     limits: Claude's corrected wording relies on Codex's report; neither has read the whole paper.
 
   - id: C6
     statement: The repository's mechanical checks pass (scripts/check_repo.py and the unit tests).
     location: AI_USE.md
-    produced_by: [chatgpt]
-    produced_through: ChatGPT wrote the maintenance code and its tests in the same build.
+    produced_by: [chatgpt, codex]
+    produced_through: >-
+      ChatGPT wrote the original maintenance code and tests. Codex pruned packaging
+      behaviour and revised file selection and its tests on 2026-10-23.
     failure_modes:
       - The checks miss defects because the tests share the code's assumptions.
     checks:
@@ -264,13 +278,32 @@ claims:
         evidence_source: The repository's tests.
         shares: [specification, code]
         outcome: passed
-        residual: No independent review of the maintenance tooling has been done.
+        residual: At that run, the maintenance tooling had not received a separate code review.
         preserved_at:
           - note: Test run on 2026-10-23 against commit 5955420; Codex is now revising the tooling and tests.
         date: 2026-10-23
-    limits: Applies to the scaffold tooling as of 2026-10-23.
+      - id: C6.b
+        method: generator-written-tests
+        description: >-
+          After reviewing the delegate's maintenance diff, parent Codex ran check_repo.py,
+          the revised maintenance suite and git diff --check on the integrated working tree.
+        performed_by: [codex]
+        target: Broken links, malformed records and regressions in the retained maintenance behaviour.
+        oracle: Repository contracts and expectations in the retained and revised tests.
+        evidence_source: Current working-tree files, maintenance tests and command output.
+        shares: [model, context, specification, code]
+        outcome: passed
+        observed: Repository checker passed on 76 configured text files; all 39 tests passed, none skipped; whitespace check passed.
+        residual: Shared implementation assumptions remain; the tests do not assess scientific adequacy or source truth.
+        preserved_at:
+          - path: HANDOVER.md
+          - path: tests/test_maintenance.py
+        date: 2026-10-23
+    limits: C6.a records the old scaffold suite; C6.b records the revised maintenance tooling after integration. Neither validates D016 or D017.
 
 gaps:
   - The ChatGPT model identifier was not recorded.
   - The raw founding conversation is not in the repository.
-  - No human has reviewed the source register, the decision log's recent entries or this record.
+  - No independent human review of the source register or complete structured record is recorded; Barry's adoption of P06 is separately documented.
+  - No separate Codex design review of the D017 specification or validator was performed in this tranche.
+  - Some supplementary files, images and external applications were not inspected; exact scopes are in references/source-register.json.
