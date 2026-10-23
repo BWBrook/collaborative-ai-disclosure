@@ -41,7 +41,7 @@ A label such as "known-answer test" or "cross-provider review" describes the met
 
 ### Shared pathways are possible common causes
 
-A check can share a model, a context, a specification, a framing, data or code with the process that produced the thing it checks. Each shared pathway is a route by which one error could pass both. It is a *possible* common cause, not a measured dependence. Where the pathways have not been assessed, say so; "not assessed" differs from "none identified".
+A check can share a model, a context, a specification, a framing, data or code with the process that produced the thing it checks. A shared element can create a common error pathway, but only if it carries a failure mechanism relevant to the target; sharing a file format or a correct constant does not. A shared pathway is a *possible* common cause, not a measured dependence. Where the pathways have not been assessed, say so; "not assessed" differs from "none identified".
 
 Dependence limits what a passing result may be counted as. It does not nullify the check. A check that shares the specification can still detect an arithmetic error that is independent of the specification. A test written by the generator can catch a violated invariant decisively. What a dependent check cannot be counted as is an independent replication, and its pass should not be treated as conclusive about failures it shares with the generator.
 
@@ -89,6 +89,7 @@ This table is unordered. Every row can be strong or weak depending on the claim,
 - **What to report.** Report the checks that bear on the consequential failure modes of the AI-involved work, their results, and the limitations that remain. Say how those limitations constrain the claims.
 - **Reporting is separate from sufficiency.** Disclosing what was checked is one obligation. Judging whether the evidence is enough to support a claim is a methodological judgement for authors, reviewers and readers, and no record or schema certifies it.
 - **When no adequate check exists,** say so. Then narrow, qualify, defer or withdraw the claim.
+- **Include material adverse checks.** A list of checks can be literally true and still mislead if a failed sensitivity analysis or a contradictory dataset is left out after the narrative changed. Report material adverse checks and their disposition: the claim was revised or withdrawn, the check was shown not to apply, or the limitation remains unresolved. Also report any change made to a check after its result was seen, where that change alters what the result can show. This does not require every intermediate log, only the evidence needed to interpret the current claim.
 - **Scope follows the AI involvement.** A disclosure of bounded language editing need not reconstruct the warrant for every conclusion of the underlying study. It should still cover the failure modes of that editing, which can include a changed negation, quantifier, axis or unit.
 
 ## 6. Reporting checks
@@ -97,7 +98,7 @@ Some wording to avoid, with what to write instead:
 
 | Avoid | Prefer |
 | --- | --- |
-| "All AI outputs were reviewed and verified by the authors." | Name the checks: their target, the oracle, the result, and what remains unchecked. For example: "The three central estimates were recovered from simulated data with planted parameters, using a simulator separate from the fitting code. Every literature claim in the Introduction was matched to the cited passage." |
+| "All AI outputs were reviewed and verified by the authors." | Name the checks: their target, the oracle, the result, and what remains unchecked. For example: "The estimator recovered planted parameters from data simulated under three specified scenarios, using a simulator separate from the fitting code. This tests the estimator, not the empirical estimates. Every literature claim in the Introduction was matched to the cited passage." |
 | "Code was independently checked by a second AI model." | "A model from a second provider reproduced the analyses from the same specification. Agreement was confirmed for all reported estimates. Both implementations share the specification and data, so this is not an independent replication." |
 | "A separate external review was commissioned." | Say who or what performed it, and what it shares with the main work. A review run in a fresh context by a model from the same family as the lead system is separate, but it is not external in the sense of independent. |
 | "The authors take full responsibility for the content." | Keep it, but present it as the accountability statement it is, not as evidence. |
@@ -121,7 +122,7 @@ For models of open natural systems, verification and validation in the strict se
 ## 7. Worked case: this repository
 
 - **The scaffold.** ChatGPT's source checks were made by the same assistant that wrote the summaries. They are recorded as such and await human review.
-- **A misattribution caught.** Working from Crossref metadata and search summaries, Claude attributed a shared-specification mechanism to Knight and Leveson. Codex, a system from a different provider, read the paper's sections 6 and 8 in full and found that the authors explicitly reject that mechanism for their experiment. The error was caught because the check reached the primary source, not because a second model disagreed. The correction is recorded on the board (thread 93) and in [AI_USE.yaml](../AI_USE.yaml).
+- **A misattribution caught.** Working from Crossref metadata and search summaries, Claude attributed a shared-specification mechanism to Knight and Leveson. Codex, a system from a different provider, inspected the relevant full-text passages (section 6, printed pages 16–17; section 8, pages 19–21) and found that the authors explicitly reject that mechanism for their experiment. Access to the primary source made the correction possible; a second model's disagreement alone would not have settled the question. Source access does not guarantee freedom from errors of interpretation. The correction is recorded on the board (thread 93) and in [AI_USE.yaml](../AI_USE.yaml).
 - **Adoption drift caught.** Claude wrote part of this D016 proposal into the adopted text of P03. Codex flagged it as the drift that AGENTS.md forbids, and the P03 text is being restored.
 - **P06 itself.** Claude drafted the proposition and the reply option Barry selected. The decision log records this so that readers can weigh the framing.
 

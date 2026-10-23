@@ -17,6 +17,7 @@ This is what formalisation means in this framework: **formalise facts and links 
 
 - **No shares of labour, time or output.** It holds no percentages, no grids of contributor roles, and no attribution sentence by sentence or line by line. The schema rejects any field it does not define, so these cannot be added informally. `produced_by` lists everyone involved in a claim, unordered and without shares.
 - **No verdict on sufficiency.** A record that passes validation certifies nothing about whether the evidence is enough to support a claim. That remains a judgement for authors, reviewers and readers ([warrant and independence, section 5](warrant-and-independence.md)).
+- **No selective omission.** Material adverse checks stay in the record, with their disposition shown in `outcome` (`failed` or `issues-fixed`) and `observed`. A record that lists only favourable checks can be literally true and still mislead.
 - **No guesses.** "not recorded" and "not assessed" are valid values and are expected where they are true. A model identifier is never inferred from a product name or a date.
 
 ## File, format and validation
@@ -52,7 +53,8 @@ The validator checks only that a label is literally true of the participants:
 
 - a `self-review` is performed by participants among the claim's producers;
 - a `same-provider-review` is performed by systems whose provider is among the producers' providers;
-- a `cross-provider-review` is performed by systems that share no provider with the producers; and
+- a `cross-provider-review` is performed by systems that share no provider with the producers;
+- a provider recorded as `not recorded` is left out of these comparisons, so that an unknown stays unknown rather than failing a claim the record never made; and
 - the `human-*` methods are performed by people.
 
 These rules test whether a label is accurate, not whether a check is strong.

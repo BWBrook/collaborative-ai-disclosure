@@ -95,7 +95,7 @@ claims:
     checks:
       - id: E1.a
         method: known-answer-test
-        description: Occupancy and detection parameters planted in simulated data were recovered across 200 replicates.
+        description: The estimator recovered occupancy and detection parameters planted in data simulated under three scenarios, across 200 replicates.
         performed_by: [agent_a2]
         target: Implementation and fitting errors.
         oracle: Parameters planted in the simulation.

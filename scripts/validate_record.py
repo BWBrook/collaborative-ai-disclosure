@@ -35,6 +35,7 @@ TextDateLoader.yaml_implicit_resolvers = {
     for key, resolvers in yaml.SafeLoader.yaml_implicit_resolvers.items()
 }
 HUMAN_CLASSES = {'human-summary-review', 'human-primary-review'}
+UNKNOWN = 'not recorded'
 
 
 def cross_reference_errors(record: dict, base: Path) -> list[str]:
@@ -64,7 +65,7 @@ def cross_reference_errors(record: dict, base: Path) -> list[str]:
         seen.add(cid)
         unknown(claim['produced_by'], f'{cid}.produced_by')
         producers = set(claim['produced_by'])
-        producer_providers = {systems[p]['provider'] for p in producers if p in systems}
+        producer_providers = {systems[p]['provider'] for p in producers if p in systems} - {UNKNOWN}
         for check in claim['checks']:
             where = f'{cid}/{check["id"]}'
             if check['id'] in seen:
@@ -77,7 +78,7 @@ def cross_reference_errors(record: dict, base: Path) -> list[str]:
                 errors.append(f'{where}: {kind} must be performed by systems only')
             if kind in HUMAN_CLASSES and not performers <= people:
                 errors.append(f'{where}: {kind} must be performed by people only')
-            performer_providers = {systems[p]['provider'] for p in performers if p in systems}
+            performer_providers = {systems[p]['provider'] for p in performers if p in systems} - {UNKNOWN}
             if kind == 'self-review' and not performers <= producers:
                 errors.append(f'{where}: self-review performers must be among the producers')
             if kind == 'same-provider-review' and not performer_providers <= producer_providers:

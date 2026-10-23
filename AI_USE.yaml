@@ -233,11 +233,11 @@ claims:
     checks:
       - id: C5.a
         method: external-evidence
-        description: Codex read sections 6 and 8 of the full manuscript against the draft.
+        description: Codex inspected the relevant full-text passages, section 6 (printed pages 16-17) and section 8 (pages 19-21), against the draft.
         performed_by: [codex]
         target: Misattributed mechanism.
         oracle: The authors' own analysis of the common faults.
-        evidence_source: Full-text manuscript hosted at Rutgers (printed pages 16-17 and 20-21).
+        evidence_source: Full-text manuscript hosted at Rutgers; selected passages, not the whole 47-page document.
         shares: []
         outcome: issues-fixed
         observed: The authors state the common faults involved no ambiguity, inconsistency or deficiency in the specification.
