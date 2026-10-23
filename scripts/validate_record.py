@@ -25,7 +25,7 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = json.loads((ROOT / 'schema/ai-use.schema.json').read_text(encoding='utf-8'))
-MACHINE_CLASSES = {'self-review', 'same-provider-review', 'cross-provider-review'}
+MACHINE_CLASSES = {'model-self-review', 'same-provider-review', 'cross-provider-review'}
 
 
 class TextDateLoader(yaml.SafeLoader):

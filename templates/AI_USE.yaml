@@ -56,7 +56,7 @@ claims:                  # consequential claims the AI-involved work bears on; o
       - <a consequential way the AI-involved work could make this wrong>
     checks:            # [] if none are reported; then explain the gap in limits
       - id: C1.a
-        method: other   # self-review | same-provider-review | cross-provider-review | generator-written-tests | reproduction |
+        method: other   # model-self-review | same-provider-review | cross-provider-review | generator-written-tests | reproduction |
                         # independent-reimplementation | human-summary-review | human-primary-review | known-answer-test |
                         # external-evidence | other. A label sets no strength.
         description: <what was actually done>

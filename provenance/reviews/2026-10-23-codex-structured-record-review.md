@@ -2,7 +2,9 @@
 
 **Reviewed snapshot:** `6d25055`, including the specification, JSON Schema, validator, template, fictional example and repository record. **Reviewer:** Codex, described by its environment as GPT-6; no finer deployment identifier is exposed. A bounded delegate tested parser and date failures; the parent tested the design cases and assessed their implications. This is a separate review of Claude's implementation, not independent scientific validation.
 
-**Recommendation:** revise before considering adoption. D017 remains unadopted. The distinction between structured reporting and sufficient evidence survives this review, but several implementation rules contradict it. Findings were posted separately in Correspondence thread 94, messages 2290–2295. The private manuscript statements supplied there are not reproduced or encoded here.
+**Recommendation on the reviewed snapshot:** revise before considering adoption. D017 remains unadopted. The distinction between structured reporting and sufficient evidence survives this review, but several implementation rules contradict it. Findings were posted separately in Correspondence thread 94, messages 2290–2295. The private manuscript statements supplied there are not reproduced or encoded here.
+
+**Current disposition:** Claude implemented all six repairs in `a2a53c2`; Codex checked that implementation and clarified the model-specific review label. The findings and original patch below are development history, not unapplied work. See the follow-up at the end. D017's adoption and usability remain separate questions.
 
 ## Findings
 
@@ -68,13 +70,13 @@ Run `uv run provenance/reviews/d017_adversarial_cases.py`. This [diagnostic](d01
 
 The delegate also tested actual recursive aliases and non-string keys; these were rejected without crashes. No additional defect is claimed for those cases. Both populated records passed the original validator. The baseline repository checker passed on 76 configured text files and all 39 maintenance tests passed; these do not exercise D017's substantive design or optional validator.
 
-## Prepared mechanical repair
+## Prepared mechanical repair (historical)
 
 The [proposed patch](2026-10-23-d017-mechanical-proposal.patch) addresses F5 and F6 only. It changes the loader, read-error handling and calendar checks, adds eight targeted optional tests under `tests/record/`, and updates the specification's validator scope and testing instructions. It does not change the schema or resolve F1–F4. No new dependencies are introduced beyond the optional validator's existing PyYAML and jsonschema requirements.
 
-The delegate prepared the code and tests; the parent read them, added explicit observation/limit fields to the synthetic control record and corresponding documentation to the patch, and replayed it in a fresh temporary copy of `6d25055`. `git apply --check` passed. All eight tests passed there, and both supplied populated records passed the patched validator. The current checkout's implementation is unchanged.
+The delegate prepared the code and tests; the parent read them, added explicit observation/limit fields to the synthetic control record and corresponding documentation to the patch, and replayed it in a fresh temporary copy of `6d25055`. `git apply --check` passed. All eight tests passed there, and both supplied populated records passed the patched validator. At that point the working-tree implementation was unchanged.
 
-After agreement, the commands from the repository root are:
+The commands prepared for that patch are preserved below for historical replay. The patch has since been applied; do not reapply it to the current checkout.
 
 ```bash
 git apply --check provenance/reviews/2026-10-23-d017-mechanical-proposal.patch
@@ -83,13 +85,13 @@ uv run --with pyyaml --with jsonschema python -m unittest discover -s tests/reco
 uv run scripts/validate_record.py AI_USE.yaml examples/embedded-collaboration.yaml
 ```
 
-The tests live separately from the standard-library maintenance suite. A passing patch test verifies these mechanical repairs; it neither applies them to this checkout nor settles the conceptual findings.
+The tests live separately from the standard-library maintenance suite. At the initial review a passing patch test verified these mechanical repairs in the temporary copy; it did not apply them to the working tree or settle the conceptual findings.
 
 ## Coordination and disposition
 
-Barry requested this review, individual board findings and implementation of agreed fixes, while explicitly keeping D017 unadopted. The request and file-release query were posted in message 2289. At preparation of this memo Claude had not replied to the new findings or released the claimed implementation files. The proposals above are therefore not recorded as agreed or applied. The review and repair evidence can be assessed before those files change. Any subsequent agreement and implementation should be recorded here and in the decision log.
+Barry requested this review, individual board findings and implementation of agreed fixes, while explicitly keeping D017 unadopted. The request and file-release query were posted in message 2289. At preparation of the initial memo Claude had not replied to the new findings or released the claimed implementation files. The proposals were therefore not yet recorded as agreed or applied. The later agreement and implementation are recorded below and in the decision log.
 
-After integrating the review artefacts and actual-work account, the repository checker passed on 79 configured text files; all 39 maintenance tests passed, none skipped; both populated records validated; and the whitespace check passed. These mechanical results do not resolve the reported defects in the unchanged implementation.
+After integrating the initial review artefacts and actual-work account, the repository checker passed on 79 configured text files; all 39 maintenance tests passed, none skipped; both populated records validated; and the whitespace check passed. Those mechanical results did not resolve the reported defects in the then-unchanged implementation.
 
 ## Disposition (added by Claude, 2026-10-23)
 
@@ -102,3 +104,11 @@ Claude ran `d017_adversarial_cases.py` against the unchanged validator and obser
 - **F4:** the replacement wording was adopted in the specification, the overclaims were softened, and the external-register interface was deferred.
 
 After the changes, the diagnostic's honest cases pass and its defect cases fail without crashing, and the 14 optional record tests pass. D017 remains unadopted.
+
+## Follow-up verification (Codex, 2026-10-23)
+
+Codex inspected `a2a53c2` and replayed the twelve-case diagnostic. Honest empty-check and unreconstructed-contributor records now pass, as does a review whose performer later contributed to the claim. Missing observations/residuals, duplicate outcomes and impossible dates fail; invalid UTF-8 produces a per-file error rather than an exception. Unknown providers still pass structurally: the revised validator explicitly does not verify provider relationships. All six original findings are addressed within that documented scope.
+
+Claude asked Codex to check the retained performer-kind restrictions and the added C4.b/C5.a source limits. The source limits match Codex's earlier readings; no new source reading or empirical replay was performed. The model-specific `self-review` token was renamed `model-self-review`, retaining the restriction to systems while avoiding the suggestion that human self-review is impossible. Human review methods still allow a person to check their own contribution; no independence is implied. Two targeted tests now cover this distinction.
+
+After the follow-up, the repository checker passed on 80 configured text files; all 39 maintenance tests and 16 optional record tests passed with none skipped; both populated records validated; and the whitespace check passed. No further implementation blocker was identified in this scoped verification. D016 and D017 remain unadopted, and their comparative usability has not been tested.

@@ -337,7 +337,7 @@
                 "method": {
                   "description": "Descriptive label only. It establishes neither independence nor the ability to detect an error.",
                   "enum": [
-                    "self-review",
+                    "model-self-review",
                     "same-provider-review",
                     "cross-provider-review",
                     "generator-written-tests",

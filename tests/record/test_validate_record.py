@@ -42,7 +42,7 @@ claims:
     failure_modes: [Test failure.]
     checks:
       - id: C1.a
-        method: self-review
+        method: model-self-review
         description: Test check.
         performed_by: [ai]
         target: Test failure.
@@ -168,6 +168,23 @@ class RecordValidationTests(unittest.TestCase):
     def test_human_review_label_must_name_people(self):
         self.record['claims'][0]['checks'][0]['method'] = 'human-primary-review'
         self.assertTrue(any('must be performed by people only' in error for error in self.errors(self.record)))
+
+    def test_model_review_labels_must_name_systems(self):
+        self.record['participants']['people'] = [{'id': 'researcher', 'name': 'Test researcher'}]
+        check = self.record['claims'][0]['checks'][0]
+        check['performed_by'] = ['researcher']
+        for method in ['model-self-review', 'same-provider-review', 'cross-provider-review']:
+            with self.subTest(method=method):
+                check['method'] = method
+                self.assertTrue(any('must be performed by systems only' in error for error in self.errors(self.record)))
+
+    def test_human_can_review_their_own_contribution(self):
+        self.record['participants']['people'] = [{'id': 'researcher', 'name': 'Test researcher'}]
+        self.record['claims'][0]['produced_by'] = ['researcher', 'ai']
+        self.record['claims'][0]['checks'][0].update(
+            method='human-primary-review', performed_by=['researcher'],
+            description='The researcher checked their own derivation against the source data.')
+        self.assertEqual(self.errors(self.record), [])
 
 
 if __name__ == '__main__':

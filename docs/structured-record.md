@@ -49,9 +49,11 @@ This is what formalisation means in this framework: **formalise facts and links 
 
 ## Method labels
 
-`method` is a descriptive label: `self-review`, `same-provider-review`, `cross-provider-review`, `generator-written-tests`, `reproduction`, `independent-reimplementation`, `human-summary-review`, `human-primary-review`, `known-answer-test`, `external-evidence` or `other`. **A label sets no default strength.** The fictional example shows a known-answer test that shares code with the fit, an external benchmark that may sit in the training data, and a test the generator wrote for itself that caught a real error.
+`method` is a descriptive label: `model-self-review`, `same-provider-review`, `cross-provider-review`, `generator-written-tests`, `reproduction`, `independent-reimplementation`, `human-summary-review`, `human-primary-review`, `known-answer-test`, `external-evidence` or `other`. **A label sets no default strength.** The fictional example shows a known-answer test that shares code with the fit, an external benchmark that may sit in the training data, and a test the generator wrote for itself that caught a real error.
 
 The validator checks only that a label names the right kind of performer: people for the `human-*` methods, and systems for the three model-review methods. It does **not** infer how a check relates to the work it checks.
+
+`model-self-review` names the model-specific category previously called `self-review`. People can also review their own work: use the applicable `human-*` method or `other`, and describe that relationship in prose. The performer-kind rule does not establish independence, and no label requires a different person or system from those who produced the contribution.
 
 An earlier draft compared each reviewer's provider with the providers of everyone involved in the claim. That rule rejected truthful intertwined collaboration: once a reviewer later helped revise a claim, its earlier review failed as a "cross-provider review". It also accepted the label whenever providers were unknown. The list of a claim's final contributors does not identify which version or contribution an individual check examined. Where a comparative label is used, its `description` should say what was compared, where that is known. A per-check `compared_with` relation was considered and deferred until readers show they need it.
 

@@ -63,7 +63,9 @@ participants:
         led the six-framework reading and positioning work, pruned maintenance tooling,
         repaired adoption-status wording, ran integration checks, and updated the records.
         Subsequently reviewed D017, posted six findings, and tested a proposed mechanical
-        repair in a temporary copy; that patch remains unapplied to this checkout.
+        repair in a temporary copy. After Claude applied the repairs in a2a53c2, checked
+        the implementation and source-scope additions, clarified the model-self-review label,
+        and reconciled the current records.
         This model attribution is a contemporaneous record of the environment's description.
 
 relationship:
@@ -343,8 +345,9 @@ claims:
           rejected empty checks and a later reviewer contribution, accepted omitted observations
           and residuals, and raised an uncaught UnicodeDecodeError. The valid control passed.
         residual: >-
-          These bounded cases are not exhaustive. Proposed conceptual repairs have not been
-          adjudicated; neither model agreement nor these tests establishes usability.
+          These bounded cases are not exhaustive. At this check the proposed repairs had not
+          been agreed; later implementation is recorded below. Neither model agreement nor
+          these tests establishes usability.
         preserved_at:
           - path: provenance/reviews/d017_adversarial_cases.py
           - path: provenance/reviews/2026-10-23-codex-structured-record-review.md
@@ -362,7 +365,8 @@ claims:
         outcome: passed
         observed: >-
           All eight targeted tests and both populated records passed in the temporary copy.
-          git apply --check passed. The current checkout's validator remains unchanged.
+          git apply --check passed. At this check the working-tree validator was unchanged;
+          Claude subsequently applied the repairs in a2a53c2.
         residual: >-
           Patch author and test author share assumptions. The patch does not address the four
           conceptual findings.
@@ -392,9 +396,36 @@ claims:
           - path: provenance/reviews/2026-10-23-codex-structured-record-review.md
           - path: tests/record/test_validate_record.py
         date: 2026-10-23
+      - id: C7.d
+        method: reproduction
+        description: >-
+          Codex inspected Claude's a2a53c2 repairs, replayed the twelve-case diagnostic,
+          and reran the maintenance and optional record tests. It clarified the
+          model-self-review label and added two targeted performer-kind cases.
+        performed_by: [codex]
+        target: Incomplete repairs, regressions and overstated descriptions of the verification.
+        oracle: The original counterexamples, stated reporting requirements and explicit type constraints.
+        evidence_source: Current code, schema, records, retained diagnostic and local test output.
+        shares: [model, context, specification, code]
+        outcome: passed
+        observed: >-
+          The diagnostic behaved as intended, including per-file failure for invalid UTF-8.
+          After the label clarification, the repository checker passed on 80 text files,
+          all 39 maintenance and 16 optional record tests passed with none skipped,
+          both populated records validated, and the whitespace check passed.
+        residual: >-
+          Codex proposed the repairs and wrote some tests. The checks share assumptions
+          with implementation and do not establish factual truth, provider relationships,
+          independent scientific validation or usability on research records.
+        preserved_at:
+          - path: provenance/reviews/2026-10-23-codex-structured-record-review.md
+          - path: tests/record/test_validate_record.py
+          - path: HANDOVER.md
+        date: 2026-10-23
     limits: >-
-      Review, agreement and implementation are complete. D017 remains a proposal; neither the
-      repairs nor model agreement adopt it or show it is usable with real research records.
+      The six-finding review, agreement, implementation and scoped follow-up checks are complete.
+      D017 remains a proposal; neither the repairs nor model agreement adopt it or show it is
+      usable with real research records.
 
 gaps:
   - The ChatGPT model identifier was not recorded.
