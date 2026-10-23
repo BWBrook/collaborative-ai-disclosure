@@ -58,6 +58,7 @@ TextDateLoader.yaml_implicit_resolvers = {
 }
 HUMAN_CLASSES = {'human-summary-review', 'human-primary-review'}
 UNKNOWN = 'not recorded'
+SKIPPED = 'date, identifier, path and performer checks not run until the record reads and passes schema validation'
 
 
 def date_bounds(value: str) -> tuple[dt.date, dt.date] | None:
@@ -151,10 +152,10 @@ def validate(path: Path) -> list[str]:
     try:
         record = yaml.load(path.read_text(encoding='utf-8'), Loader=TextDateLoader)
     except (OSError, UnicodeError, yaml.YAMLError) as exc:
-        return [f'cannot read: {exc}']
+        return [f'cannot read: {exc}', SKIPPED]
     schema_errors = sorted(Draft202012Validator(SCHEMA).iter_errors(record), key=lambda e: list(e.absolute_path))
     if schema_errors:
-        return [f'{"/".join(map(str, e.absolute_path)) or "(root)"}: {e.message}' for e in schema_errors]
+        return [f'{"/".join(map(str, e.absolute_path)) or "(root)"}: {e.message}' for e in schema_errors] + [SKIPPED]
     return date_errors(record) + cross_reference_errors(record, path.resolve().parent)
 
 
@@ -169,7 +170,7 @@ def main(argv: list[str]) -> int:
         print(f'{"FAIL" if errors else "PASS"}: {name}')
         for error in errors:
             print(f'  - {error}')
-    print('Checked: structure, calendar dates and period order, identifiers, preserved paths and performer kinds. Not checked: how checks relate to the work, whether the recorded facts are true, or whether the checks are adequate.')
+    print('Validator scope: structure; then, for schema-valid records only, calendar dates and period order, identifiers, preserved paths and performer kinds. Never checked: how checks relate to the work, whether the recorded facts are true, or whether the checks are adequate.')
     return 1 if failed else 0
 
 

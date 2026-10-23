@@ -186,6 +186,16 @@ class RecordValidationTests(unittest.TestCase):
             description='The researcher checked their own derivation against the source data.')
         self.assertEqual(self.errors(self.record), [])
 
+    def test_schema_failure_reports_skipped_downstream_checks(self):
+        self.record['record']['prepared_on'] = 'yesterday'
+        self.record['claims'][0]['checks'][0]['performed_by'] = ['nobody']
+        errors = self.errors(self.record)
+        self.assertIn(validator.SKIPPED, errors)
+        self.assertFalse(any('unknown participant' in error for error in errors))
+
+    def test_valid_record_reports_no_skipped_checks(self):
+        self.assertNotIn(validator.SKIPPED, self.errors(self.record))
+
 
 if __name__ == '__main__':
     unittest.main()
