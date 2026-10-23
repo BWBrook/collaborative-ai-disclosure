@@ -101,14 +101,14 @@ def validate_records(data: dict, key: str, status_key: str) -> list[str]:
     return errors
 
 
-def check_repository(root: Path) -> tuple[list[str], int, str]:
+def check_repository(root: Path) -> tuple[list[str], int]:
     root = root.resolve()
     errors: list[str] = []
     try:
         config = load_json(root / 'repo_config.json')
-        files, mode = collect_public_files(root)
+        files = collect_public_files(root)
     except (ValueError, OSError) as exc:
-        return [str(exc)], 0, 'unavailable'
+        return [str(exc)], 0
     if config.get('schema_version') != 1 or not valid_slug(config.get('slug')):
         errors.append('repo_config.json: invalid schema_version or slug')
     if not isinstance(config.get('version'), str) or not config['version']:
@@ -122,7 +122,7 @@ def check_repository(root: Path) -> tuple[list[str], int, str]:
         if not isinstance(name, str) or not safe_relative(name):
             errors.append(f'Invalid required file name: {name!r}')
         elif name not in selected:
-            errors.append(f'Required public file missing or untracked: {name}')
+            errors.append(f'Required public file missing or outside configured roots: {name}')
     for file in files:
         rel = file.relative_to(root).as_posix()
         try:
@@ -166,20 +166,20 @@ def check_repository(root: Path) -> tuple[list[str], int, str]:
             errors.append('policies: review_interval_days must be a positive integer')
     except (ValueError, OSError) as exc:
         errors.append(str(exc))
-    return errors, len(files), mode
+    return errors, len(files)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=ROOT)
     args = parser.parse_args()
-    errors, count, mode = check_repository(args.root)
+    errors, count = check_repository(args.root)
     if errors:
         for error in errors:
             print('ERROR:', error, file=sys.stderr)
         print(f'FAILED: {len(errors)} issue(s).', file=sys.stderr)
         return 1
-    print(f'PASS: {count} public text files checked ({mode}).')
+    print(f'PASS: {count} text files checked under configured roots.')
     print('Checked: required files, UTF-8/LF, inline relative links, JSON records and source references.')
     print('Not checked: external links, heading anchors, policy truth, scientific validity or all secrets.')
     return 0

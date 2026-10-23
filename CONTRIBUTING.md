@@ -18,7 +18,7 @@ AI-supported and collaboratively developed contributions are welcome. Briefly de
 
 The proposed initial maintainer is Barry W. Brook; see [governance](GOVERNANCE.md). A disagreement with a founding assumption is welcome when made explicit. Do not quietly change the default to rigid roles, turn speculative forecasts into factual claims or convert unresolved proposals into settled principles.
 
-For code changes, run the checker and unit tests documented in [START_HERE.md](START_HERE.md). For prose changes, check consistency, links, source support and any resulting changes to templates. Record material changes in [CHANGELOG.md](CHANGELOG.md).
+For code changes, run the checker and unit tests documented in [maintenance tools](scripts/README.md). For prose changes, check consistency, links, source support and any resulting changes to templates. Record material changes in [CHANGELOG.md](CHANGELOG.md).
 
 ## Licensing
 

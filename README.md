@@ -4,7 +4,7 @@
 
 A draft, narrative-first framework for describing human–AI collaboration in research, with adaptable declaration templates, provenance guidance, and a source-backed policy register.
 
-**Status: `0.1.0-draft`.** This is a starting point for open development, not a reporting standard, a journal-endorsed scheme, or a certificate of scientific validity. The working repository name is `collaborative-ai-disclosure`. No remote repository is bundled or implied.
+**Status: `0.1.0-draft`, local and unreleased.** The [decision log](provenance/decision-log.md) distinguishes adopted direction from proposals under development. The working repository name is `collaborative-ai-disclosure`.
 
 ## Why this exists
 
@@ -30,8 +30,9 @@ Their precise wording remains editable. A sixth commitment was adopted on 2026-1
 
 | Your purpose | Start here |
 | --- | --- |
-| Continue development in WSL with Codex or Claude | [START_HERE.md](START_HERE.md) and [HANDOVER.md](HANDOVER.md) |
+| Continue development in WSL with Codex or Claude | [HANDOVER.md](HANDOVER.md) and [maintenance commands](scripts/README.md) |
 | Understand the framework | [Principles](docs/principles.md) and [interaction modes](docs/interaction-modes.md) |
+| Compare existing approaches | [Positioning](docs/positioning.md) and [source-reading scopes](references/README.md) |
 | Adapt a declaration for a paper | [Template guide](templates/README.md) |
 | Record the checkable facts behind a declaration (proposal) | [Structured record](docs/structured-record.md) and [its template](templates/AI_USE.yaml) |
 | Understand the reasoning behind the design | [Founding discussion](provenance/founding-discussion.md) and [decision log](provenance/decision-log.md) |
@@ -50,13 +51,13 @@ That label is not sufficient on its own. A short narrative should explain the ac
 
 ## What is included
 
-The repository contains a substantive draft framework; concise and extended declarations; Methods and `AI_USE.md` templates; clearly fictional examples; a curated account of the founding discussion; unresolved questions; an evidence register; contribution guidance; agent handover instructions; and small, dependency-free maintenance scripts with tests.
+The repository contains the framework; concise and extended declarations; Methods and `AI_USE.md` templates; fictional examples; a proposed structured record; a curated account of the founding discussion; source and policy registers; contribution guidance; and local maintenance tools.
 
-Everything is readable as plain text. The framework does not require Python, Git, a provider account, transcript exports, machine-readable role scores, or any particular AI system. Python is needed only for the optional repository checks and packaging tools.
+The prose and templates are usable as plain text. Optional Python tools check repository mechanics. The core checks use the standard library; the separate structured-record validator declares its dependencies in its script. See [maintenance tools](scripts/README.md).
 
 ## Policy and evidence status
 
-Selected primary sources were checked during scaffold construction on **2026-09-08**. Checks were conducted by the drafting assistant; independent human review remains pending. Coverage is deliberately limited, and failed or partial retrievals are marked. No scheduled policy-monitoring service is installed.
+Selected primary sources were checked during scaffold construction on **2026-09-08**. The literature comparison was extended on **2026-10-23**, with [inspection scopes](references/README.md) recorded. This did not refresh publisher policies. These are assistant-conducted readings; independent human review remains pending.
 
 The framework's preferred terminology is not a claim that every journal permits every described workflow. Read the actual target-journal policy at submission. Do not disguise an incompatible practice with softer wording. See [policy adaptation](docs/policy-adaptation.md).
 
@@ -64,4 +65,4 @@ The framework's preferred terminology is not a claim that every journal permits 
 
 The scaffold proposes CC BY 4.0 for the explanatory framework, CC0 for reusable templates and fictional examples, and MIT for maintenance code and configuration. These are **scaffold-selected defaults for maintainer review before publication**, not a decision recorded in the founding discussion. See [LICENSE.md](LICENSE.md). Third-party sources keep their own rights.
 
-The project originated in a discussion between Barry W. Brook and ChatGPT. This package was drafted by ChatGPT from that discussion; Codex and Claude are intended development collaborators, not claimed contributors to this initial package. See [this repository's own AI-use account](AI_USE.md).
+The project originated in a discussion between Barry W. Brook and ChatGPT, which drafted the original scaffold. Claude and Codex subsequently developed and reviewed it. See [this repository's own AI-use account](AI_USE.md).

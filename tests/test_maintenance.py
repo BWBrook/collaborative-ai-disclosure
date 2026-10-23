@@ -1,23 +1,18 @@
-"""Local consistency, packaging and policy-age tests. No network required."""
+"""Local consistency and policy-age tests. No network or Git required."""
 from __future__ import annotations
 
 import contextlib
 import datetime as dt
-import hashlib
 import io
 import json
-import shutil
-import subprocess
 import sys
 import tempfile
 import unittest
-import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from check_repo import check_links, check_repository, valid_date, validate_records
-from package_repo import build_archive
 from policy_age import assess, main as age_main
 from repo_utils import collect_public_files, excluded, load_json, safe_relative
 
@@ -66,16 +61,12 @@ class Fixture(unittest.TestCase):
     def record_errors(self):
         return validate_records({'schema_version': 1, 'policies': [self.policy]}, 'policies', 'status')
 
-    def git(self, *args):
-        return subprocess.run(['git', '-C', str(self.root), *args], check=True, capture_output=True, text=True)
-
 
 class StructureTests(Fixture):
     def test_valid_fixture(self):
-        errors, count, mode = check_repository(self.root)
+        errors, count = check_repository(self.root)
         self.assertEqual(errors, [])
         self.assertEqual(count, 5)
-        self.assertEqual(mode, 'explicit-public-roots')
 
     def test_missing_required_file(self):
         (self.root / 'docs/detail.md').unlink()
@@ -108,6 +99,10 @@ class StructureTests(Fixture):
     def test_non_utf8_rejected(self):
         (self.root / 'README.md').write_bytes(b'\xff\n')
         self.assertTrue(any('UTF-8' in x for x in check_repository(self.root)[0]))
+
+    def test_nul_rejected(self):
+        (self.root / 'docs/detail.md').write_bytes(b'\x00\n')
+        self.assertTrue(any('NUL byte' in x for x in check_repository(self.root)[0]))
 
     def test_bad_json_has_readable_error(self):
         self.write('policies/registry.json', '{oops}\n')
@@ -224,49 +219,17 @@ class AgeTests(Fixture):
             self.assertEqual(age_main(['--root', str(self.root), '--max-age-days', '0']), 1)
 
 
-class PackagingTests(Fixture):
-    def test_manifest_matches_every_payload_and_receipt(self):
-        output = self.base / 'one.zip'
-        count, digest, _ = build_archive(self.root, output)
-        self.assertEqual(count, 5)
-        self.assertEqual(digest, hashlib.sha256(output.read_bytes()).hexdigest())
-        self.assertTrue(output.with_suffix('.zip.sha256').read_text().startswith(digest))
-        with zipfile.ZipFile(output) as archive:
-            prefix = 'test-project/'
-            manifest = archive.read(prefix + 'MANIFEST.sha256').decode()
-            self.assertEqual(len(manifest.splitlines()), count)
-            for line in manifest.splitlines():
-                expected, name = line.split('  ', 1)
-                self.assertEqual(expected, hashlib.sha256(archive.read(prefix + name)).hexdigest())
-            self.assertIsNone(archive.testzip())
-
-    def test_repeated_archives_deterministic(self):
-        one, two = self.base / 'one.zip', self.base / 'two.zip'
-        build_archive(self.root, one)
-        build_archive(self.root, two)
-        self.assertEqual(one.read_bytes(), two.read_bytes())
-
+class SelectionTests(Fixture):
     def test_private_and_unknown_files_excluded(self):
         self.write('private/session.md', 'private fixture\n')
         self.write('docs/.env', 'fixture\n')
         self.write('docs/raw-transcripts/chat.md', 'fixture\n')
         self.write('docs/credentials.json', '{}\n')
         self.write('unknown.md', 'unselected\n')
-        paths, _ = collect_public_files(self.root)
+        paths = collect_public_files(self.root)
         self.assertEqual(len(paths), 5)
         for name in ['private/x.md', 'docs/.env', 'docs/raw-transcripts/x.md', 'docs/secret.key']:
             self.assertTrue(excluded(name))
-
-    def test_archive_inside_root_refused(self):
-        with self.assertRaises(ValueError):
-            build_archive(self.root, self.root / 'oops.zip')
-
-    def test_existing_output_requires_force(self):
-        output = self.base / 'one.zip'
-        build_archive(self.root, output)
-        with self.assertRaises(ValueError):
-            build_archive(self.root, output)
-        build_archive(self.root, output, force=True)
 
     def test_symlink_file_refused(self):
         target = self.base / 'outside.md'
@@ -282,44 +245,9 @@ class PackagingTests(Fixture):
         with self.assertRaises(ValueError):
             collect_public_files(self.root)
 
-    def test_binary_content_refused(self):
-        (self.root / 'docs/detail.md').write_bytes(b'\x00\n')
-        with self.assertRaises(ValueError):
-            build_archive(self.root, self.base / 'one.zip')
-
-    @unittest.skipUnless(shutil.which('git'), 'Git not installed')
-    def test_git_selects_only_tracked_current_bytes(self):
-        self.git('init', '-b', 'main')
-        self.git('add', '.')
-        self.write('docs/new-untracked.md', 'not yet staged\n')
-        self.write('docs/detail.md', '# Changed working bytes\n')
-        files, mode = collect_public_files(self.root)
-        self.assertEqual(mode, 'git-tracked-current-bytes')
-        self.assertNotIn(self.root / 'docs/new-untracked.md', files)
-        output = self.base / 'git.zip'
-        build_archive(self.root, output)
-        with zipfile.ZipFile(output) as archive:
-            self.assertEqual(archive.read('test-project/docs/detail.md'), b'# Changed working bytes\n')
-            self.assertFalse(any('/.git/' in x for x in archive.namelist()))
-
-    @unittest.skipUnless(shutil.which('git'), 'Git not installed')
-    def test_tracked_private_file_still_excluded(self):
-        self.write('docs/.env', 'fixture\n')
-        self.git('init', '-b', 'main')
-        self.git('add', '.')
-        self.assertNotIn(self.root / 'docs/.env', collect_public_files(self.root)[0])
-
-    @unittest.skipUnless(shutil.which('git'), 'Git not installed')
-    def test_parent_repository_refused(self):
-        subprocess.run(['git', '-C', str(self.base), 'init', '-b', 'main'], check=True, capture_output=True)
-        with self.assertRaises(ValueError):
-            collect_public_files(self.root)
-
-
-class FullProjectTests(unittest.TestCase):
-    def test_delivered_repository_consistency(self):
-        errors, _, _ = check_repository(ROOT)
-        self.assertEqual(errors, [], '\n'.join(errors))
+    def test_new_files_are_checked_before_staging(self):
+        self.write('docs/new.md', '[broken](missing.md)\n')
+        self.assertTrue(any('docs/new.md: missing relative link' in x for x in check_repository(self.root)[0]))
 
 
 if __name__ == '__main__':

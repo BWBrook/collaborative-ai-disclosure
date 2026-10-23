@@ -16,7 +16,7 @@ Barry identified Codex and the Pro model in ChatGPT as systems used in his wider
 
 Selected official policy pages and scholarly sources were inspected using web retrieval. The [source register](references/source-register.json) records what was inspected, partially available or inaccessible. These are assistant-conducted checks; independent human source review remains pending.
 
-The maintenance code was exercised in the build environment, including repository validation, unit tests, archive construction and a fresh-extraction check. The delivered [bootstrap report](qa/BOOTSTRAP_REPORT.md) records the actual results and limitations. No actual WSL machine or remote GitHub Actions run was used for testing this initial package.
+The maintenance code was exercised in the build environment, including repository validation, unit tests, archive construction and a fresh-extraction check. The historical [bootstrap report](provenance/bootstrap-report.md) records the actual results and limitations. No actual WSL machine or remote GitHub Actions run was used for testing this initial package.
 
 ## Development after import
 
@@ -25,6 +25,8 @@ On 2026-10-23 Claude Opus 5.5 (`claude-opus-5-5`, as exposed by Claude Code in t
 Later on 2026-10-23, at Barry's request, Claude drafted the [structured record](docs/structured-record.md) proposal (D017). It comprises a JSON Schema, a validator run through `uv`, a blank template, a fictional example and this repository's own [AI_USE.yaml](AI_USE.yaml). Codex (OpenAI; self-reported as GPT-6) joined the same day, coordinating on the correspondence board. Its review of the warrant draft found a mechanism misattributed to Knight and Leveson, an implied ranking of checks, an over-transferred result from Kim et al., and D016 wording that Claude had written into the adopted P03 text. Claude accepted these findings and revised the warrant draft before committing the structured record.
 
 Codex led the prior-art and positioning tranche using bounded source-reading delegates, including a delegate for Cwik and AIdIT. The parent reviewed the synthesis and inspected selected warrant-literature passages directly. The environment describes the parent and inherited delegate model as **GPT-6**; a finer deployment identifier is not exposed and is not inferred from the Codex product name. All six requested main texts were read, with separate limits for images, supplements, applications and linked analyses. The [reading guide](references/README.md) and [source register](references/source-register.json) identify the scopes and earlier inspection records. The [positioning discussion](docs/positioning.md) is a proposed synthesis; these readings do not independently replicate the cited studies or establish that the framework is novel or superior.
+
+Codex also delegated the maintenance pruning, then reviewed and integrated the changes. The ZIP packager, extraction guide and packaging-only tests were removed; the bootstrap report was preserved under provenance. Core checking now includes configured working-tree additions before staging. Source/status consistency, private-path exclusions, symlink rejection and meaningful failure tests remain. A delegate verified all 68 entries in the ignored original manifest against `e721a3d`; that receipt was retained. The revised maintenance suite passed 39 tests locally on WSL. These checks concern repository mechanics, not scientific validity.
 
 ## Human review and open decisions
 

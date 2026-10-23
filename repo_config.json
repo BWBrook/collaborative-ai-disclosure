@@ -4,7 +4,6 @@
   "version": "0.1.0-draft",
   "public_roots": [
     "README.md",
-    "START_HERE.md",
     "HANDOVER.md",
     "AGENTS.md",
     "CLAUDE.md",
@@ -31,13 +30,11 @@
     "issues",
     "scripts",
     "tests",
-    "qa",
     "AI_USE.yaml",
     "schema"
   ],
   "required_files": [
     "README.md",
-    "START_HERE.md",
     "HANDOVER.md",
     "AGENTS.md",
     "CLAUDE.md",
@@ -55,9 +52,8 @@
     "references/source-register.json",
     "scripts/check_repo.py",
     "scripts/policy_age.py",
-    "scripts/package_repo.py",
     "tests/test_maintenance.py",
-    "qa/BOOTSTRAP_REPORT.md",
+    "provenance/bootstrap-report.md",
     "LICENSES/CC-BY-4.0.txt",
     "LICENSES/CC0-1.0.txt",
     "LICENSES/MIT.txt"

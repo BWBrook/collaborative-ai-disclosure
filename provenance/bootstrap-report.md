@@ -1,5 +1,7 @@
 # Bootstrap quality report
 
+*Historical record, moved here on 2026-10-23. The observations and commands below describe the original 2026-09-08 archive. The ZIP packager has since been retired; current checks are documented in [maintenance tools](../scripts/README.md). The ignored local `MANIFEST.sha256` is retained as the original import receipt, not a checksum of the evolving repository.*
+
 **Package:** Collaborative AI Research Disclosure, `0.1.0-draft`  
 **Build/check date:** 2026-09-08  
 **Performed by:** the drafting assistant in the ChatGPT build environment  

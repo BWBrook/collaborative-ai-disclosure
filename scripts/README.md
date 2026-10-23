@@ -1,26 +1,23 @@
 # Optional maintenance tools
 
-These tools use Python 3.10+ and the standard library. They do not call an AI model, fetch policies, install packages, authenticate, publish, initialise Git or alter scientific data.
+The core maintenance tools use Python 3.10+ and the standard library. They check local files without fetching policies or calling an AI model.
 
 | Command | What it does |
 | --- | --- |
 | `python3 scripts/check_repo.py` | Checks expected public files, text format, simple inline relative links and source/policy JSON consistency. |
 | `python3 scripts/policy_age.py` | Reports stale, incomplete, future-dated or human-unreviewed policy records. |
-| `python3 scripts/package_repo.py --output ../snapshot.zip` | Packages selected public text files plus a hash manifest; writes a separate ZIP checksum. |
-| `python3 -m unittest discover -s tests -v` | Exercises the maintenance tools using local fixtures, including temporary Git repositories when Git exists. |
+| `python3 -m unittest discover -s tests -v` | Exercises the maintenance tools against local fixtures. |
 
-Every script accepts `--help`; the three command-line tools accept `--root` for an explicit project directory. `check_repo.py` returns 0 for a pass and 1 for a structural failure. The age report normally returns 0 while printing reminders; `--fail-on-due` returns 2 when attention is needed. Invalid data returns 1. The packager refuses existing output unless `--force` is deliberately supplied.
+Both command-line tools accept `--help` and `--root` for an explicit project directory. `check_repo.py` returns 0 for a pass and 1 for a structural failure. The age report normally returns 0 while printing reminders; `--fail-on-due` returns 2 when attention is needed. Invalid data returns 1.
 
-## Selection and privacy boundaries
+## Scope
 
-For an uninitialised scaffold, `repo_config.json` defines allowed public roots. Within those roots, ordinary new files may be selected, so review them before sharing. Once the project has its own Git repository, selection changes to tracked files only; new public files must be staged. Current working-tree bytes are packaged, not automatically the last commit. A parent Git repository causes a refusal rather than accidental collection from the wrong project.
+`repo_config.json` defines the roots and required files to check. Checks use current working-tree files, including new files before staging; they do not select files for publication. Files outside those roots and common local/private paths are skipped. Symlinks are rejected to prevent reading outside the project. Schema files and machine-readable examples receive text checks; the separate record validator handles their content.
 
-Common local/private/credential paths and raw-log filenames are excluded even when tracked. Symlinks in eligible paths are rejected, and the archive must be written outside the project. The archive includes only text; each source file has a SHA-256 entry. Fixed ZIP timestamps and sorted entries make repeated packaging deterministic in the same runtime. Different compression-library versions need not produce byte-identical ZIPs.
+The Markdown checker handles simple inline relative links, without checking heading anchors or external URLs. JSON checks cover syntax, status/date consistency, review metadata and source references. They do not establish source truth, journal compliance, scientific validity or absence of secrets. Review staged files and relevant history before publication.
 
-This is **not an exhaustive secret scanner**. A password pasted into `README.md` remains a password. Review the candidate files, staged Git changes and archive before making them public.
+The optional GitHub Actions workflow runs these local checks; it does not monitor policy changes. Its initial build history is recorded in the [bootstrap report](../provenance/bootstrap-report.md).
 
-## Validation limits
+## Optional structured-record validation
 
-The Markdown checker handles the simple inline links used here; it does not parse all Markdown, verify heading anchors, fetch external links or validate citation truth. The JSON checks enforce basic record consistency, not publisher-policy compliance. Passing tests does not establish scientific correctness or independent human review.
-
-The bundled GitHub Actions workflow is an optional local-check runner, not a policy watcher. Its third-party checkout action is pinned to a specific release commit and should be reviewed before enabling public CI. It has not been run remotely as part of the initial scaffold. If tooling grows substantially, review the scope before adding dependencies or a documentation build system.
+`uv run scripts/validate_record.py AI_USE.yaml examples/embedded-collaboration.yaml` checks the two populated records against the proposed schema and cross-reference rules. This separate tool uses Python 3.11+, PyYAML and jsonschema, declared inline and managed by `uv`. The blank template contains placeholders and is not a populated test record. See the [proposed specification](../docs/structured-record.md) for scope; structural validity does not establish factual truth or adequate checks.
