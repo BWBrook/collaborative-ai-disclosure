@@ -16,8 +16,8 @@ record:
     status: pending
     note: >-
       Drafted by Claude and updated by Codex for its own work, source-reading scopes and
-      maintenance results. No complete human review is recorded. Codex's edits and
-      structural validation do not constitute a separate review of the proposed format.
+      maintenance results. Codex subsequently conducted the separate D017 design review
+      recorded below. No complete human review or adoption of D017 is recorded.
 
 participants:
   people:
@@ -55,11 +55,15 @@ participants:
       configuration: >-
         Two direct delegates handled source reading and maintenance; the source reader
         delegated Cwik/AIdIT inspection to a further Codex collaborator. Model settings
-        were inherited. No finer model identifier or reasoning-effort setting is inferred.
+        were inherited. The maintenance delegate later tested D017 parser/date failures and
+        prepared a proposed repair in temporary storage. No finer model identifier or
+        reasoning-effort setting is inferred.
       description: >-
         Reviewed the warrant draft against counterexamples and selected primary texts,
         led the six-framework reading and positioning work, pruned maintenance tooling,
         repaired adoption-status wording, ran integration checks, and updated the records.
+        Subsequently reviewed D017, posted six findings, and tested a proposed mechanical
+        repair in a temporary copy; that patch remains unapplied to this checkout.
         This model attribution is a contemporaneous record of the environment's description.
 
 relationship:
@@ -301,9 +305,69 @@ claims:
         date: 2026-10-23
     limits: C6.a records the old scaffold suite; C6.b records the revised maintenance tooling after integration. Neither validates D016 or D017.
 
+  - id: C7
+    statement: D017 needs revisions to its reporting design and validator before adoption is considered.
+    location: provenance/reviews/2026-10-23-codex-structured-record-review.md
+    produced_by: [codex]
+    produced_through: >-
+      Based on Claude's D017 draft, Codex reviewed its representation and executable behaviour,
+      with a bounded delegate testing parser/date cases and preparing a proposed repair.
+    failure_modes:
+      - Truthful negative or intertwined accounts rejected by the proposed format.
+      - Adverse evidence silently overwritten, or implausible dates accepted.
+      - Tested proposals misreported as agreed fixes or applied changes.
+    checks:
+      - id: C7.a
+        method: known-answer-test
+        description: >-
+          Codex and its delegate mutated synthetic copies of the record to test reporting,
+          duplicate-key, date and read-error behaviour at 6d25055. The parent replayed the
+          retained diagnostic against the unchanged validator.
+        performed_by: [codex]
+        target: Rejection of honest gaps and false acceptance or loss of malformed evidence.
+        oracle: Explicit synthetic inputs and the proposal's stated reporting requirements.
+        evidence_source: Local validator output and code/schema inspection.
+        shares: [model, context, specification]
+        outcome: failed
+        observed: >-
+          The original validator accepted duplicate outcomes and four impossible dates,
+          rejected empty checks and a later reviewer contribution, accepted omitted observations
+          and residuals, and raised an uncaught UnicodeDecodeError. The valid control passed.
+        residual: >-
+          These bounded cases are not exhaustive. Proposed conceptual repairs have not been
+          adjudicated; neither model agreement nor these tests establishes usability.
+        preserved_at:
+          - path: provenance/reviews/d017_adversarial_cases.py
+          - path: provenance/reviews/2026-10-23-codex-structured-record-review.md
+        date: 2026-10-23
+      - id: C7.b
+        method: generator-written-tests
+        description: >-
+          The delegate prepared a mechanical repair and targeted tests in temporary storage.
+          The parent inspected the patch and replayed it in a fresh temporary copy of 6d25055.
+        performed_by: [codex]
+        target: Duplicate-key loss, calendar errors and batch termination on invalid UTF-8.
+        oracle: Deliberately malformed fixtures and valid date/record controls.
+        evidence_source: Eight targeted tests and both populated records under the proposed patch.
+        shares: [model, context, specification, code]
+        outcome: passed
+        observed: >-
+          All eight targeted tests and both populated records passed in the temporary copy.
+          git apply --check passed. The current checkout's validator remains unchanged.
+        residual: >-
+          Patch author and test author share assumptions. The patch does not address the four
+          conceptual findings and awaits Claude's response and implementation-file release.
+        preserved_at:
+          - path: provenance/reviews/2026-10-23-d017-mechanical-proposal.patch
+          - path: provenance/reviews/2026-10-23-codex-structured-record-review.md
+        date: 2026-10-23
+    limits: >-
+      Review and patch preparation are complete; agreement and application remain pending.
+      No new principle or operational proposal has been adopted.
+
 gaps:
   - The ChatGPT model identifier was not recorded.
   - The raw founding conversation is not in the repository.
   - No independent human review of the source register or complete structured record is recorded; Barry's adoption of P06 is separately documented.
-  - No separate Codex design review of the D017 specification or validator was performed in this tranche.
+  - D017's six review findings await Claude's response; its implementation files retain the reviewed defects.
   - Some supplementary files, images and external applications were not inspected; exact scopes are in references/source-register.json.
