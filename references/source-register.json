@@ -12,12 +12,27 @@
       "doi": "10.1186/s41073-026-00245-8",
       "url": "https://link.springer.com/article/10.1186/s41073-026-00245-8",
       "access_status": "inspected",
-      "scope": "Relevant full HTML discussion and the author’s AI-use declaration; supplementary documentation was not fetched.",
-      "note": "Distinguishes a brief disclosure from documentation of consequential AI use. Its own declared workflow includes author-generated text supported by ChatGPT, Elicit and Grammarly; it should not be represented as a demonstration of the fully embedded workflow proposed here.",
-      "last_attempted": "2026-09-08",
-      "last_inspected": "2026-09-08",
-      "checked_by": "drafting assistant",
-      "human_review": "pending"
+      "scope": "Full main article text, references, declarations and Tables 1–7; all text of Additional file 1 (AI-use documentation, manuscript V4.1, updated 7 August 2026). Additional file 2 (57-page AI-generated exploratory mapping) downloaded but only introductory/search-method text read. External OSF package not inspected. Full-text reading is not a validation of the article or its mapping.",
+      "note": "Tables 6–7 already cover verification, accepted/modified/rejected outputs, influence on claims, prompt chains and review histories. The author’s own human-generated initial text describes that article’s practice; the framework also covers substantive AI drafting.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed); full article/supplement inspection delegated to a Codex collaborator",
+      "human_review": "pending",
+      "inspection_history": [
+        {
+          "access_status": "inspected",
+          "scope": "Relevant full HTML discussion and the author’s AI-use declaration; supplementary documentation was not fetched.",
+          "note": "Distinguishes a brief disclosure from documentation of consequential AI use. Its own declared workflow includes author-generated text supported by ChatGPT, Elicit and Grammarly; it should not be represented as a demonstration of the fully embedded workflow proposed here.",
+          "last_attempted": "2026-09-08",
+          "last_inspected": "2026-09-08",
+          "checked_by": "drafting assistant",
+          "human_review": "pending"
+        }
+      ],
+      "version": "Publisher Version of Record; article history records 18 August 2026",
+      "publication_date": "2026-08-15",
+      "volume": "11",
+      "article_number": "47"
     },
     {
       "id": "SRC-DROBNIAK-2026",
@@ -43,13 +58,28 @@
       "year": 2026,
       "doi": "10.1186/s41073-026-00230-1",
       "url": "https://link.springer.com/article/10.1186/s41073-026-00230-1",
-      "access_status": "partial",
-      "scope": "Primary-page metadata and abstract only. Full methods, role definitions, tables and supplements were not inspected.",
-      "note": "The abstract describes a survey of ecology/evolution journals and proposes AIdIT. Compare its structured approach before claiming novelty or incompatibility. Do not imply that this scaffold independently audited its results.",
-      "last_attempted": "2026-09-08",
-      "last_inspected": "2026-09-08",
-      "checked_by": "drafting assistant",
-      "human_review": "pending"
+      "access_status": "inspected",
+      "scope": "Full main article text, references and declarations, Table 1, visual inspection of workflow Figure 6, and DOCX supplementary text including Figure S22. External GitHub analyses and Shiny implementation not inspected; empirical counts not independently recomputed.",
+      "note": "Table 1 and pp. 13–14 include validation, checking/approval and human oversight; Figure 6 includes a prompt registry and optional unstructured comments. Text generation is allowed. Internal inconsistencies in reported counts/figure labels mean exact empirical rates require a separate data check.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed); full article/supplement inspection delegated to a Codex collaborator",
+      "human_review": "pending",
+      "inspection_history": [
+        {
+          "access_status": "partial",
+          "scope": "Primary-page metadata and abstract only. Full methods, role definitions, tables and supplements were not inspected.",
+          "note": "The abstract describes a survey of ecology/evolution journals and proposes AIdIT. Compare its structured approach before claiming novelty or incompatibility. Do not imply that this scaffold independently audited its results.",
+          "last_attempted": "2026-09-08",
+          "last_inspected": "2026-09-08",
+          "checked_by": "drafting assistant",
+          "human_review": "pending"
+        }
+      ],
+      "version": "Publisher Version of Record; article history records 7 October 2026",
+      "publication_date": "2026-07-11",
+      "volume": "11",
+      "article_number": "57"
     },
     {
       "id": "SRC-PARK-2025",
@@ -309,12 +339,24 @@
       "doi": "10.1109/TSE.1986.6312924",
       "url": "https://doi.org/10.1109/TSE.1986.6312924",
       "access_status": "partial",
-      "scope": "Crossref metadata (IEEE TSE SE-12(1):96-109) and search-result summaries of the design and findings. Full text not read.",
-      "note": "27 independently written versions from one specification, one million tests; coincident failures substantially exceeded what independence predicts. Cited in docs/warrant-and-independence.md for common-mode failure.",
+      "scope": "Selected full-text inspection of the 47-page manuscript hosted by Rutgers: abstract, introduction excerpts, section 6 fault examples (printed pp. 16-17), and section 8 conclusions (printed pp. 19-21). The complete specification appendix was not read; no experimental replay.",
+      "note": "Separately developed versions failed dependently in this experiment. The authors explicitly reject specification deficiencies as the explanation for the observed common faults; examples concern numerical analysis and incomplete geometry case analysis. A flawed shared brief remains a separate possible scenario, not the mechanism established here.",
       "last_attempted": "2026-10-23",
       "last_inspected": "2026-10-23",
-      "checked_by": "Claude Opus 5.5",
-      "human_review": "pending"
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "inspection_history": [
+        {
+          "access_status": "partial",
+          "scope": "Crossref metadata (IEEE TSE SE-12(1):96-109) and search-result summaries of the design and findings. Full text not read.",
+          "note": "27 independently written versions from one specification, one million tests; coincident failures substantially exceeded what independence predicts. Cited in docs/warrant-and-independence.md for common-mode failure.",
+          "last_attempted": "2026-10-23",
+          "last_inspected": "2026-10-23",
+          "checked_by": "Claude Opus 5.5",
+          "human_review": "pending"
+        }
+      ],
+      "inspected_url": "https://people.cs.rutgers.edu/~uli/cs673/papers/EvaluationMultiVersionProgramming86.pdf"
     },
     {
       "id": "SRC-KIM-2025",
@@ -330,12 +372,24 @@
       "doi": null,
       "url": "https://arxiv.org/abs/2506.07962",
       "access_status": "partial",
-      "scope": "arXiv abstract read; ICML 2025 (PMLR 267) listing seen in search results. Full paper not read.",
-      "note": "Over 350 LLMs; models agree 60% of the time when both err on one leaderboard dataset; shared provider and architecture raise correlation; larger, more accurate models have highly correlated errors even across providers.",
+      "scope": "Selected full-text HTML of arXiv:2506.07962v1 (9 June 2025): abstract, sections 1, 3-4, relevant section 5.2 results and section 6 limitations; not a full reading of appendices or a data/code replay.",
+      "note": "HELM's 0.60 is pairwise answer agreement conditional on both models erring, not the probability that an agreed answer is wrong. Section 4 recommends ground-truth calibration of model-judge pairs. Section 6 identifies limitations of the correlation metric and the restricted multiple-choice/offline task settings. These data do not calibrate this project's current long-form model reviews.",
       "last_attempted": "2026-10-23",
       "last_inspected": "2026-10-23",
-      "checked_by": "Claude Opus 5.5",
-      "human_review": "pending"
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "inspection_history": [
+        {
+          "access_status": "partial",
+          "scope": "arXiv abstract read; ICML 2025 (PMLR 267) listing seen in search results. Full paper not read.",
+          "note": "Over 350 LLMs; models agree 60% of the time when both err on one leaderboard dataset; shared provider and architecture raise correlation; larger, more accurate models have highly correlated errors even across providers.",
+          "last_attempted": "2026-10-23",
+          "last_inspected": "2026-10-23",
+          "checked_by": "Claude Opus 5.5",
+          "human_review": "pending"
+        }
+      ],
+      "inspected_url": "https://arxiv.org/html/2506.07962v1"
     },
     {
       "id": "SRC-PANICKSSERY-2024",
@@ -419,6 +473,203 @@
       "last_inspected": "2026-10-23",
       "checked_by": "Claude Opus 5.5",
       "human_review": "pending"
+    },
+    {
+      "access_status": "inspected",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "id": "SRC-GAIDET-2025",
+      "kind": "article",
+      "title": "GAIDeT (Generative AI Delegation Taxonomy): A taxonomy for humans to delegate tasks to generative artificial intelligence in scientific research and publishing",
+      "authors": [
+        "Yana Suchikova",
+        "Natalia Tsybuliak",
+        "Jaime A. Teixeira da Silva",
+        "Serhii Nazarovets"
+      ],
+      "year": 2026,
+      "doi": "10.1080/08989621.2025.2544331",
+      "url": "https://www.tandfonline.com/doi/full/10.1080/08989621.2025.2544331",
+      "inspected_url": "https://www.tandfonline.com/doi/pdf/10.1080/08989621.2025.2544331",
+      "version": "Publisher PDF, 28 PDF pages including cover and article pp. 1–27; minor-correction notice present",
+      "publication_date": "2025-08-08",
+      "volume": "33",
+      "issue": "3",
+      "article_number": "2544331",
+      "scope": "Complete main article PDF text, Table 1, declarations and references read. Supplementary File 1 was not retrieved. Publisher HTML first returned HTTP 403; direct publisher PDF subsequently succeeded. Institutional repository explicitly had no full text; supplementary-page retrieval yielded no usable supplement.",
+      "note": "Source ID retains first-online year 2025; assigned issue is 2026. Section 4.3 limits delegable tasks on capability grounds. Section 5.1 proposes contribution fractions for discussion, not a settled measurement rule. Section 5.4 explicitly separates task classification from assessing scholarly quality."
+    },
+    {
+      "access_status": "inspected",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "id": "SRC-GAIDET-GENERATOR",
+      "kind": "tool-documentation",
+      "title": "GAIDeT Declaration Generator: English source and task vocabulary",
+      "authors": [
+        "Serhii Nazarovets and contributors"
+      ],
+      "year": 2026,
+      "url": "https://github.com/panbibliotekar/gaidet-declaration/blob/7f21a877c7fbdb3f35bc0da2e2b156e6e70b2551/index.html",
+      "version": "Repository commit 7f21a877c7fbdb3f35bc0da2e2b156e6e70b2551 (29 September 2026)",
+      "scope": "Complete English index.html and _data/terms.yml read through the GitHub connector; no browser interaction or execution test. Repository HEAD resolved immediately after retrieval. This is implementation evidence, separate from the article.",
+      "note": "The generator accepts optional comments but automatically inserts a full-human-supervision assertion. That assertion is not elicited or verified by an input field."
+    },
+    {
+      "access_status": "inspected",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "id": "SRC-WEAVER-2024-AID",
+      "kind": "article",
+      "title": "The Artificial Intelligence Disclosure (AID) Framework: An Introduction",
+      "authors": [
+        "Kari D. Weaver"
+      ],
+      "year": 2024,
+      "doi": "10.5860/crln.85.10.407",
+      "url": "https://arxiv.org/abs/2408.01904",
+      "inspected_url": "https://arxiv.org/pdf/2408.01904v2",
+      "version": "arXiv:2408.01904v2, 9 April 2025; PDF of C&RL News 85(10), pp. 407–411 (November 2024)",
+      "scope": "All five PDF pages read, including all 14 headings, both examples, acknowledgements and notes. Current university adaptations and linked policy sources not audited.",
+      "note": "Recognises AI as researcher, editor, critic or collaborator and describes conceptualisation, interpretation and privacy/security. Structured headings contain prose and are omitted where unused. This is broader than a list of operational tasks."
+    },
+    {
+      "access_status": "inspected",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "id": "SRC-WAHLE-2023-AI-USAGE-CARDS",
+      "kind": "article",
+      "title": "AI Usage Cards: Responsibly Reporting AI-generated Content",
+      "authors": [
+        "Jan Philip Wahle",
+        "Terry Ruas",
+        "Saif M. Mohammad",
+        "Norman Meuschke",
+        "Bela Gipp"
+      ],
+      "year": 2023,
+      "doi": null,
+      "url": "https://arxiv.org/abs/2303.03886",
+      "inspected_url": "https://arxiv.org/pdf/2303.03886v2",
+      "version": "arXiv:2303.03886v2, 9 May 2023; preprint of the 2023 ACM/IEEE JCDL paper",
+      "scope": "Complete extractable PDF text read, including sections 1–6, references, Appendices A–D and both full card tables. Embedded questionnaire screenshots were not individually visually inspected; live questionnaire not tested.",
+      "note": "Section 3 distinguishes transparency, integrity and accountability. The Ethics block requests error/harm mitigation and author approval; the template supports iterative optimisation and free-text details. It is not merely a delegation inventory."
+    },
+    {
+      "access_status": "inspected",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "id": "SRC-CANGARU-2023",
+      "kind": "protocol",
+      "title": "Development of the ChatGPT, Generative Artificial Intelligence and Natural Large Language Models for Accountable Reporting and Use (CANGARU) Guidelines",
+      "authors": [
+        "Giovanni E. Cacciamani",
+        "Michael B. Eppler",
+        "Conner Ganjavi",
+        "Asli Pekan",
+        "Brett Biedermann",
+        "Gary S. Collins",
+        "Inderbir S. Gill"
+      ],
+      "year": 2023,
+      "doi": null,
+      "url": "https://arxiv.org/abs/2307.08974",
+      "inspected_url": "https://arxiv.org/pdf/2307.08974v1",
+      "version": "arXiv:2307.08974v1, 18 July 2023",
+      "scope": "Complete extractable text of the 20-page protocol, including references; the flowchart image was not separately visually inspected. Targeted final-guideline searches and the current EQUATOR CANGARU entry were checked on 23 October 2026. No final consensus checklist was located.",
+      "note": "Proposes separate use, disclosure and intervention-reporting lists, with review, Delphi, consensus and piloting stages. EQUATOR still lists development and an outdated planned publication date; this does not prove no final document exists.",
+      "status_check_url": "https://www.equator-network.org/library/reporting-guidelines-under-development/reporting-guidelines-under-development-for-other-study-designs/#CANGARU"
+    },
+    {
+      "id": "SRC-LAWLOR-2016",
+      "kind": "article",
+      "title": "Triangulation in aetiological epidemiology",
+      "authors": [
+        "Debbie A. Lawlor",
+        "Kate Tilling",
+        "George Davey Smith"
+      ],
+      "year": 2016,
+      "doi": "10.1093/ije/dyw314",
+      "url": "https://academic.oup.com/ije/article/45/6/1866/2930550",
+      "access_status": "partial",
+      "scope": "Publisher abstract, metadata and introduction passages, including the definition of triangulation and the distinction from applying several analyses with shared biases to one dataset. Later page retrieval failed; full article and examples not read.",
+      "note": "Prior foundation for comparing approaches by differing bias structures. Volume 45(6), pp. 1866-1886 is dated 2016; publisher reports online publication 20 January 2017. This paper is not an AI disclosure standard.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending"
+    },
+    {
+      "id": "SRC-MAYO-2018",
+      "kind": "book",
+      "title": "Statistical Inference as Severe Testing: How to Get Beyond the Statistics Wars",
+      "authors": [
+        "Deborah G. Mayo"
+      ],
+      "year": 2018,
+      "url": "https://assets.cambridge.org/97811076/64647/excerpt/9781107664647_excerpt.pdf",
+      "access_status": "partial",
+      "scope": "Publisher excerpt, opening discussion and section 1.1 severity requirement (printed pp. 3-5); successful local PDF retrieval after one later web retrieval timed out. Not the whole excerpt or full book.",
+      "note": "A prior account of why agreement provides little evidence when a method has little ability to reveal a claim's flaws. Cited as an intellectual precedent, without adopting the book's full statistical philosophy or equating informal error detection with calibrated statistical power.",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending"
+    },
+    {
+      "access_status": "partial",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "id": "SRC-NASCIMENTO-SILVA-2026",
+      "kind": "article",
+      "title": "Identical errors, different responsibilities: epistemic duty in AI-assisted scientific writing",
+      "authors": [
+        "Dimas Cassimiro Nascimento",
+        "Daliton da Silva"
+      ],
+      "year": 2026,
+      "doi": "10.1007/s43681-026-01330-w",
+      "url": "https://link.springer.com/article/10.1007/s43681-026-01330-w",
+      "publication_date": "2026-08-26",
+      "volume": "6",
+      "article_number": "484",
+      "scope": "Parent Codex collaborator inspected publisher HTML abstract, sections 1–4.1 and selected section 5 passages, including Table 1 caption but not the whole table. Not a full article reading.",
+      "note": "Direct AI-writing precedent for checks supported by independent evidence and capable of detecting relevant errors (section 4.1); also addresses dependence on prior framing. Conceptual argument, not an empirical validation of this project’s proposed criterion."
+    },
+    {
+      "access_status": "partial",
+      "last_attempted": "2026-10-23",
+      "last_inspected": "2026-10-23",
+      "checked_by": "Codex (GPT-6, environment description; exact deployment identifier not exposed)",
+      "human_review": "pending",
+      "id": "SRC-HSIEH-CHEN-2026",
+      "kind": "article",
+      "title": "From AI Disclosure to Judgment Traceability: Addressing Research Waste in AI-Assisted Health Sciences Publishing",
+      "authors": [
+        "Tino Hsieh",
+        "Ya-Ting Chen"
+      ],
+      "year": 2026,
+      "doi": "10.2196/106068",
+      "url": "https://metascience.jmir.org/2026/1/e106068",
+      "publication_date": "2026-10-19",
+      "volume": "1",
+      "article_number": "e106068",
+      "scope": "Publisher HTML metadata, abstract, opening conceptual sections, Table 1, and worked-example discussion through the argument on AI-originated ideas read. Later sections and references not read in full. PDF request returned an empty file and is not counted as inspection.",
+      "note": "A provisional claim-centred account links consequential claims to evidence, inference, uncertainty and responsible authors. Its worked example separates the origin of an idea from the subsequent work needed to justify it."
     }
   ]
 }
