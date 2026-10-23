@@ -18,6 +18,10 @@ Selected official policy pages and scholarly sources were inspected using web re
 
 The maintenance code was exercised in the build environment, including repository validation, unit tests, archive construction and a fresh-extraction check. The delivered [bootstrap report](qa/BOOTSTRAP_REPORT.md) records the actual results and limitations. No actual WSL machine or remote GitHub Actions run was used for testing this initial package.
 
+## Development after import
+
+On 2026-10-23 Claude Opus 5.5 (`claude-opus-5-5`, as exposed by Claude Code in the local environment) put the unmodified scaffold under Git as its first commit. It ran the repository checks and tests, which passed, and wrote a [first-pass review](provenance/reviews/2026-10-23-claude-first-pass.md). The review proposes an answer to topic 6, a formal layer of facts and evidence links, and pruning of the scaffold. Its prior-art notes rest on web search results and one arXiv abstract, not full reading. Barry asked for the review. He has not yet responded to its proposals, and none of them has been adopted. Codex is expected to join, with coordination on Barry's correspondence board.
+
 ## Human review and open decisions
 
 Barry requested the scaffold but has not yet reviewed the generated files at the time of packaging. The sixth conceptual topic was unanswered, and the detailed assurance guidance remains provisional. Licensing, initial governance and citation metadata are scaffold defaults requiring his review before public release.
