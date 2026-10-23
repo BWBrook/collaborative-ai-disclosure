@@ -1,0 +1,300 @@
+--- a/scripts/validate_record.py
++++ b/scripts/validate_record.py
+@@ -6,14 +6,16 @@
+
+ Usage: uv run scripts/validate_record.py AI_USE.yaml [more records...]
+
+-Checks structure, unique and resolvable identifiers, preserved paths, and that each
+-check's method label is literally true of who produced the claim and who performed
++Checks structure, calendar dates and period order, unique and resolvable identifiers,
++preserved paths, and that each check's method label is literally true of who produced the claim and who performed
+ the check (for example, a cross-provider review must come from a different
+ provider). Labels say nothing about how strong a check is, and the validator cannot
+ check that the recorded facts are true.
+ """
+ from __future__ import annotations
+
++import calendar
++import datetime as dt
+ import json
+ import sys
+ from pathlib import Path
+@@ -27,7 +29,27 @@
+
+
+ class TextDateLoader(yaml.SafeLoader):
+-    """Keep unquoted dates such as 2026-10-23 as strings, as the schema expects."""
++    """Keep dates as strings and reject duplicate keys, including merge collisions."""
++
++    def construct_mapping(self, node, deep=False):
++        self.flatten_mapping(node)
++        seen = set()
++        for key_node, _ in node.value:
++            key = self.construct_object(key_node, deep=deep)
++            try:
++                duplicate = key in seen
++                seen.add(key)
++            except TypeError as exc:
++                raise yaml.constructor.ConstructorError(
++                    'while constructing a mapping', node.start_mark,
++                    'unhashable mapping key', key_node.start_mark,
++                ) from exc
++            if duplicate:
++                raise yaml.constructor.ConstructorError(
++                    'while constructing a mapping', node.start_mark,
++                    f'duplicate mapping key {key!r}', key_node.start_mark,
++                )
++        return super().construct_mapping(node, deep=deep)
+
+
+ TextDateLoader.yaml_implicit_resolvers = {
+@@ -36,6 +58,49 @@
+ }
+ HUMAN_CLASSES = {'human-summary-review', 'human-primary-review'}
+ UNKNOWN = 'not recorded'
++
++
++def date_bounds(value: str) -> tuple[dt.date, dt.date] | None:
++    """Calendar bounds for a schema-valid date of year, month or day precision."""
++    if value in {UNKNOWN, 'ongoing'}:
++        return None
++    parts = [int(part) for part in value.split('-')]
++    start = dt.date(*(parts + [1] * (3 - len(parts))))
++    if len(parts) == 1:
++        end = dt.date(parts[0], 12, 31)
++    elif len(parts) == 2:
++        end = dt.date(parts[0], parts[1], calendar.monthrange(*parts)[1])
++    else:
++        end = start
++    return start, end
++
++
++def date_errors(record: dict) -> list[str]:
++    errors: list[str] = []
++
++    def bounds(value: str, where: str):
++        try:
++            return date_bounds(value)
++        except ValueError:
++            errors.append(f'{where}: invalid calendar date {value!r}')
++            return None
++
++    bounds(record['record']['prepared_on'], 'record.prepared_on')
++    review = record['record']['human_review']
++    if 'reviewed_on' in review:
++        bounds(review['reviewed_on'], 'record.human_review.reviewed_on')
++    for system in record['participants']['systems']:
++        where = f'participants.systems/{system["id"]}.period'
++        start = bounds(system['period']['from'], f'{where}.from')
++        end = bounds(system['period']['to'], f'{where}.to')
++        # Reject only when every possible start is later than every possible end.
++        if start is not None and end is not None and start[0] > end[1]:
++            errors.append(f'{where}: from is later than to at the recorded precision')
++    for claim in record.get('claims', []):
++        for check in claim['checks']:
++            if 'date' in check:
++                bounds(check['date'], f'{claim["id"]}/{check["id"]}.date')
++    return errors
+
+
+ def cross_reference_errors(record: dict, base: Path) -> list[str]:
+@@ -94,12 +159,12 @@
+ def validate(path: Path) -> list[str]:
+     try:
+         record = yaml.load(path.read_text(encoding='utf-8'), Loader=TextDateLoader)
+-    except (OSError, yaml.YAMLError) as exc:
++    except (OSError, UnicodeError, yaml.YAMLError) as exc:
+         return [f'cannot read: {exc}']
+     schema_errors = sorted(Draft202012Validator(SCHEMA).iter_errors(record), key=lambda e: list(e.absolute_path))
+     if schema_errors:
+         return [f'{"/".join(map(str, e.absolute_path)) or "(root)"}: {e.message}' for e in schema_errors]
+-    return cross_reference_errors(record, path.resolve().parent)
++    return date_errors(record) + cross_reference_errors(record, path.resolve().parent)
+
+
+ def main(argv: list[str]) -> int:
+@@ -113,7 +178,7 @@
+         print(f'{"FAIL" if errors else "PASS"}: {name}')
+         for error in errors:
+             print(f'  - {error}')
+-    print('Checked: structure, identifiers, preserved paths and method-label consistency. Not checked: whether the recorded facts are true or the checks adequate.')
++    print('Checked: structure, calendar dates and period order, identifiers, preserved paths and method-label consistency. Not checked: whether the recorded facts are true or the checks adequate.')
+     return 1 if failed else 0
+
+
+--- /dev/null
++++ b/tests/record/test_validate_record.py
+@@ -0,0 +1,141 @@
++"""Optional YAML-record tests; run with the validator's PyYAML/jsonschema dependencies."""
++from __future__ import annotations
++
++import contextlib
++import copy
++import io
++import sys
++import tempfile
++import unittest
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts'))
++import validate_record as validator
++
++FIXTURE = """\
++record_format: ai-use-record/0.1
++artefact: {title: Test record, kind: repository}
++narrative: AI_USE.md
++record:
++  prepared_by: [ai]
++  prepared_on: 2026-10-23
++  human_review: {status: pending}
++participants:
++  systems:
++    - id: ai
++      product: Test tool
++      provider: Test provider
++      model: Test model
++      model_source: exposed-by-tool
++      period: {from: 2026-10, to: ongoing}
++      interaction_record: contemporaneous-summary
++relationship: {predominant_mode: ai-assistance, summary: Test fixture only.}
++records:
++  clean_release: {status: absent}
++  development_history: {status: absent}
++  deliberative_record: {status: absent}
++claims:
++  - id: C1
++    statement: Test claim.
++    produced_by: [ai]
++    produced_through: Test fixture only.
++    failure_modes: [Test failure.]
++    checks:
++      - id: C1.a
++        method: self-review
++        description: Test check.
++        performed_by: [ai]
++        target: Test failure.
++        oracle: Test oracle.
++        evidence_source: Test fixture only.
++        shares: [model]
++        outcome: passed
++        observed: Test outcome only.
++        residual: Test fixture only.
++        preserved_at: [{note: Test fixture only.}]
++    limits: Test fixture only.
++"""
++
++
++class RecordValidationTests(unittest.TestCase):
++    def setUp(self):
++        self.temp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temp.cleanup)
++        self.root = Path(self.temp.name)
++        self.record = validator.yaml.load(FIXTURE, Loader=validator.TextDateLoader)
++
++    def write(self, text, name='record.yaml'):
++        path = self.root / name
++        path.write_text(text, encoding='utf-8')
++        return path
++
++    def errors(self, data):
++        return validator.validate(self.write(validator.yaml.safe_dump(data)))
++
++    def test_conflicting_duplicate_outcome_is_rejected(self):
++        text = FIXTURE.replace('outcome: passed', 'outcome: failed\n        outcome: passed')
++        errors = validator.validate(self.write(text))
++        self.assertTrue(any("duplicate mapping key 'outcome'" in error for error in errors))
++
++    def test_merge_collision_is_rejected(self):
++        text = FIXTURE.replace('outcome: passed', '<<: {outcome: failed}\n        outcome: passed')
++        errors = validator.validate(self.write(text))
++        self.assertTrue(any("duplicate mapping key 'outcome'" in error for error in errors))
++
++    def test_merge_without_collision_preserves_outcome(self):
++        text = FIXTURE.replace('outcome: passed', '<<: {outcome: passed}')
++        self.assertEqual(validator.validate(self.write(text)), [])
++
++    def test_invalid_utf8_does_not_abort_remaining_records(self):
++        bad = self.root / 'bad.yaml'
++        bad.write_bytes(b'\xff\n')
++        good = self.write(FIXTURE)
++        output = io.StringIO()
++        with contextlib.redirect_stdout(output):
++            status = validator.main([str(bad), str(good)])
++        self.assertEqual(status, 1)
++        self.assertIn(f'FAIL: {bad}', output.getvalue())
++        self.assertIn(f'PASS: {good}', output.getvalue())
++
++    def test_impossible_calendar_dates_in_each_date_field(self):
++        cases = [
++            (('record', 'prepared_on'), '2026-02-30'),
++            (('record', 'human_review', 'reviewed_on'), '2026-13'),
++            (('participants', 'systems', 0, 'period', 'from'), '0000'),
++            (('participants', 'systems', 0, 'period', 'to'), '2026-04-31'),
++            (('claims', 0, 'checks', 0, 'date'), '2026-99-99'),
++        ]
++        for path, value in cases:
++            with self.subTest(path=path, value=value):
++                record = copy.deepcopy(self.record)
++                node = record
++                for key in path[:-1]:
++                    node = node[key]
++                node[path[-1]] = value
++                self.assertTrue(any('invalid calendar date' in error for error in self.errors(record)))
++
++    def test_leap_day_and_partial_dates_remain_valid(self):
++        for value in ['2024-02-29', '2026', '2026-10', '9999-12-31']:
++            with self.subTest(value=value):
++                self.record['record']['prepared_on'] = value
++                self.assertEqual(self.errors(self.record), [])
++
++    def test_provably_reversed_periods_are_rejected(self):
++        for start, end in [('2026-10-23', '2026-10-22'), ('2026-02', '2026-01'), ('2026', '2025')]:
++            with self.subTest(start=start, end=end):
++                self.record['participants']['systems'][0]['period'] = {'from': start, 'to': end}
++                self.assertTrue(any('from is later than to' in error for error in self.errors(self.record)))
++
++    def test_overlapping_partial_and_unknown_periods_remain_valid(self):
++        cases = [
++            ('2026', '2026-01'), ('2026-10-23', '2026'), ('2026-10', '2026-10-01'),
++            ('2026', 'ongoing'), ('not recorded', '2026-10'), ('not recorded', 'not recorded'),
++        ]
++        for start, end in cases:
++            with self.subTest(start=start, end=end):
++                self.record['participants']['systems'][0]['period'] = {'from': start, 'to': end}
++                self.assertEqual(self.errors(self.record), [])
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- a/docs/structured-record.md
++++ b/docs/structured-record.md
+@@ -25,9 +25,10 @@
+ - **Location.** The record lives in `AI_USE.yaml`, beside the narrative in `AI_USE.md`. A blank template is at [templates/AI_USE.yaml](../templates/AI_USE.yaml).
+ - **Why YAML.** Researchers already write it for Quarto, R Markdown and `CITATION.cff`, and it allows comments.
+ - **Schema.** The structure is defined by a JSON Schema (draft 2020-12) at [schema/ai-use.schema.json](../schema/ai-use.schema.json), so any language can validate a record. R has `jsonvalidate`; Python has `jsonschema`.
+-- **Two YAML pitfalls.**
++- **YAML pitfalls.**
+   - Many YAML parsers turn an unquoted `2026-10-23` into a date object. Either quote dates or tell the parser to keep them as strings, as the validator does.
+   - Under YAML 1.1 the keys `on`, `yes` and `no` parse as booleans. That is why the review fields are named `reviewed_by` and `reviewed_on`.
++  - Duplicate keys, including collisions introduced by merge keys, are rejected so later fields cannot silently overwrite earlier evidence.
+ - **The validator.** Run `uv run scripts/validate_record.py AI_USE.yaml`. It needs PyYAML and jsonschema, which the script declares inline and `uv` installs on demand. The repository's core checks stay standard-library-only, and validating YAML is the demonstrated need that AGENTS.md asks for before a dependency is added.
+
+ ## Sections
+@@ -63,7 +64,8 @@
+
+ | The validator checks | The validator does not check |
+ | --- | --- |
+-| Structure against the schema | Whether the recorded facts are true |
++| Structure against the schema; duplicate YAML keys rejected | Whether the recorded facts are true |
++| Calendar dates and definitely reversed periods, allowing partial-date precision | Whether dates are historically accurate |
+ | That identifiers are unique and resolve to participants | Whether a check could detect what its `target` names |
+ | That `preserved_at` paths exist | Whether the checks suffice for the claim |
+ | That method labels are literally consistent with the participants | Whether the narrative and the record agree |
+--- a/scripts/README.md
++++ b/scripts/README.md
+@@ -21,3 +21,5 @@
+ ## Optional structured-record validation
+
+ `uv run scripts/validate_record.py AI_USE.yaml examples/embedded-collaboration.yaml` checks the two populated records against the proposed schema and cross-reference rules. This separate tool uses Python 3.11+, PyYAML and jsonschema, declared inline and managed by `uv`. The blank template contains placeholders and is not a populated test record. See the [proposed specification](../docs/structured-record.md) for scope; structural validity does not establish factual truth or adequate checks.
++
++Run the optional validator regressions with `uv run --with pyyaml --with jsonschema python -m unittest discover -s tests/record -v`. These tests exercise duplicate-key rejection, calendar/date precision and continuation after a per-file read failure. They are separate from the standard-library maintenance suite.
