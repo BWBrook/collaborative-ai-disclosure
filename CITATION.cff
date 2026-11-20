@@ -1,10 +1,16 @@
 cff-version: 1.2.0
-message: "Draft citation metadata for maintainer review. Cite the repository version actually used; add its verified URL after publication."
+message: "Draft citation metadata for maintainer review. Cite the repository version actually used."
 title: "Collaborative AI Research Disclosure: a narrative-first draft framework"
 authors:
   - family-names: Brook
     given-names: Barry W.
 version: 0.1.0-draft
+repository-code: "https://github.com/BWBrook/collaborative-ai-disclosure"
+url: "https://github.com/BWBrook/collaborative-ai-disclosure"
+license:
+  - CC-BY-4.0
+  - CC0-1.0
+  - MIT
 abstract: >-
   A draft framework and reusable templates for explaining intertwined
   human-AI research workflows, with overlapping interaction modes,

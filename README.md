@@ -4,7 +4,7 @@
 
 A draft, narrative-first framework for describing human–AI collaboration in research, with adaptable declaration templates, provenance guidance, and a source-backed policy register.
 
-**Status: `0.1.0-draft`, local and unreleased.** The [decision log](provenance/decision-log.md) distinguishes adopted direction from proposals under development. The working repository name is `collaborative-ai-disclosure`.
+**Status: `0.1.0-draft`, public but not yet released (no tagged version).** The [decision log](provenance/decision-log.md) distinguishes adopted direction from proposals under development. The working repository name is `collaborative-ai-disclosure`.
 
 ## Why this exists
 

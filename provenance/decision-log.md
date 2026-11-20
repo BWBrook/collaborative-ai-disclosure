@@ -15,12 +15,13 @@ This log records working direction, not final ratification of every sentence. Da
 | D009 | Welcomed starting proposal | Short declaration, method-specific information and longer repository account; exact burden and minimum content remain open. |
 | D010 | Established direction (2026-10-23) | **Origin tells you which checks a contribution needs; warrant decides whether it stands.** Resolves the sixth topic. Proposed by Claude and adopted by Barry; see the adoption record below and [P06](../docs/principles.md). |
 | D011 | Scaffold proposal | Separate accepted direction, hypotheses, draft operational guidance and source-check status in the repository. |
-| D012 | Scaffold default, review before publication | Working title, directory name, version, licences and preliminary maintainer arrangements. |
+| D012 | Scaffold default; licences adopted 2026-11-20 (D018) | Working title, directory name, version, licences and preliminary maintainer arrangements. |
 | D013 | Scaffold proposal; tooling revised 2026-10-23 | Dependency-free core checks, optional policy-age warnings and draft issue seeds. The initial local ZIP packager was retired once Git history existed; its bootstrap report and original import receipt were retained. These are maintenance choices, not scientific certification. |
 | D014 | Deferred | Community governance beyond the initial maintainer; engagement strategy; publication venue for the framework. |
 | D015 | Deferred | Exact retention standards, minimum verification account and optional interoperability with existing role taxonomies. |
 | D016 | Proposal under review (Claude, 2026-10-23; revised the same day after Codex's review, board thread 93) | Operational account for D010, framed as a synthesis of established ideas rather than a new principle. Record each check's target, oracle, evidence source, applier, result, possible shared pathways with the generator, and residual gap. Method labels set no default strength. See [warrant and independence](../docs/warrant-and-independence.md). Not adopted. |
 | D017 | Proposal under review (Claude, 2026-10-23; Codex review the same day) | A structured record (`AI_USE.yaml`, JSON Schema, validator) that formalises facts and links to evidence, never shares of labour, and certifies no sufficiency. See [structured record](../docs/structured-record.md) and [six review findings](reviews/2026-10-23-codex-structured-record-review.md). Claude and Codex agreed all six findings, and Claude implemented them the same day. Not adopted. |
+| D018 | Established direction (2026-11-20) | Publish the repository publicly under the scoped licences proposed in D012: CC BY 4.0 for original prose, CC0 1.0 for templates and fictional examples, MIT for code and configuration. See the publication record below. |
 
 ## D010 adoption record
 
@@ -47,6 +48,16 @@ Barry subsequently requested the separate D017 adversarial review, individual fi
 Claude then reproduced every diagnostic case, agreed all six findings (thread 94, 2300–2305) and implemented them in `a2a53c2`: Codex's patch for F5/F6, and Codex's proposed repairs for F1–F4. A per-check `compared_with` relation was considered and deferred. Codex checked the implementation and clarified the retained model-specific label as `model-self-review`; this preserves the performer-kind restriction without suggesting that people cannot review their own work. These changes revise the operational proposal, not adopted principles. Agreement and implementation do not adopt D017; it remains for Barry to consider.
 
 On the same day, Claude challenged the positioning account's treatment of GAIDeT's supervision assertion as a separate implementation issue. Codex checked the published sample declaration and rationale, and local execution of the pinned generator. The revised account identifies a template design implemented by the generator, whose assertions still need support in the research being disclosed. This corrects a source interpretation; it does not establish the superiority of this project's proposals or adopt new criteria. Claude's separate validator scope-report repair was also verified, without changing the comparison's frozen schema.
+
+## Publication record, 2026-11-20
+
+During a clean-out of local checkouts on the WSL laptop, Claude (Opus 5.5) proposed publishing this repository, which had no remote, as a new public GitHub repository. Barry approved the batch of proposals that included it: "All of those actions are right, except MEWC-Table-UI". Before publishing, Claude pointed out that `LICENSE.md` presented the licences as proposals for maintainer review, recommended keeping them, and asked which scheme to use.
+
+**Barry's reply, verbatim:** "Keep as proposed"
+
+**How the reply was produced:** the words match a reply button Claude offered in the app's next-step box. Barry selected it. The decision is his; the words were drafted by Claude.
+
+**Scope of the adoption:** the licences and public visibility. The project name, version and initial maintainer arrangement (D012) were not separately put to Barry. D016 and D017 remain proposals.
 
 ## Changing a decision
 

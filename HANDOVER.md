@@ -32,11 +32,9 @@ Either system can implement changes and either can critique them. Announce file 
 
 Update [AI_USE.md](AI_USE.md) with actual systems, observable periods and material contributions. Distinguish the original ChatGPT archive from subsequent Claude and Codex work. Record only model identifiers exposed by the relevant environment.
 
-## Before the first public push
+## Publication
 
-Review the name and project description; the scoped licensing defaults; the proposed initial maintainer arrangement; the `CITATION.cff` attribution; all public provenance notes; and any source summary likely to be read as policy advice. Check current files and whatever Git history is being published for sensitive material. No raw transcript is included in this scaffold.
-
-This local repository has no remote. Barry's current instruction requires permission for creating a public remote, publication or contact outside the collaboration. After an authorised remote exists, add its verified URL to `CITATION.cff` and appropriate documentation. Do not invent identifiers, endorsements or release dates.
+The repository has been public at https://github.com/BWBrook/collaborative-ai-disclosure since 2026-11-20, under the scoped licences Barry adopted that day ([D018](provenance/decision-log.md)). The full history was scanned with gitleaks before the first push. No version has been tagged or released. The project name and description, the proposed initial maintainer arrangement and the `CITATION.cff` attribution remain scaffold defaults for Barry's review. Contact outside the collaboration still needs his permission. Do not invent identifiers, endorsements or release dates.
 
 ## Source-check limitations
 

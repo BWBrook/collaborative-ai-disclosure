@@ -44,6 +44,6 @@ Codex also reviewed private exploratory encodings and their supporting evidence 
 
 ## Human review and open decisions
 
-Barry requested the scaffold but has not yet reviewed the generated files at the time of packaging. The sixth conceptual topic was unanswered at packaging. It was resolved on 2026-10-23, and the detailed assurance guidance remains provisional. Licensing, initial governance and citation metadata are scaffold defaults requiring his review before public release.
+Barry requested the scaffold but has not yet reviewed the generated files at the time of packaging. The sixth conceptual topic was unanswered at packaging. It was resolved on 2026-10-23, and the detailed assurance guidance remains provisional. He adopted the proposed licences unchanged on 2026-11-20, when the repository was made public; initial governance and citation metadata remain scaffold defaults for his review.
 
 The package must not be cited as evidence that he approved every sentence, checked each source, or adopted every proposed criterion. Future contributors should update this account with actual work, checks, decisions and review status.

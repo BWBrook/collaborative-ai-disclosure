@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- 2026-11-20: published at https://github.com/BWBrook/collaborative-ai-disclosure after a full-history gitleaks scan. Barry adopted the proposed scoped licences unchanged (D018); updated the README status, `LICENSE.md`, `CITATION.cff`, the handover and the AI-use account accordingly.
 - 2026-10-23: verified Claude's validator scope-report repair (`c1bf1b4`); 39 maintenance and 18 optional record tests pass. Corrected the GAIDeT comparison after source cross-checking: supervision and no-AI-authorship assertions appear in the published sample declaration and are implemented as generator defaults. Updated inspection scopes and actual-work records; D016 and D017 remain proposals.
 - 2026-10-23: imported the scaffold under Git unchanged (`e721a3d`) and added Claude's first-pass review.
 - 2026-10-23: adopted P06, "origin tells you which checks a contribution needs; warrant decides whether it stands" (D010). Replaced `docs/verification-and-assurance.md` with `docs/warrant-and-independence.md`, whose operational account of the independence and power of checks is a proposal (D016). Added six cited sources at abstract or metadata scope.
